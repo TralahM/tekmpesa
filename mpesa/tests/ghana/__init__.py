@@ -11,4 +11,5 @@ api_key = secrets.get("sandbox_api_key")
 env = "sandbox"
 
 api = API(public_key=public_key, api_key=api_key, env=env)
-# print(f"api.session_id = {api.session_id}")
+print()
+print(f"api.session_id = {api.session_id}")

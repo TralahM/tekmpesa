@@ -15,14 +15,20 @@ class API:
         public_key: str,
         api_key: str,
         env: str = "sandbox",
-        sandbox_path="/sandbox/ipg/v2/vodafoneGHA/",
-        live_path="/openapi/ipg/v2/vodafoneGHA/",
     ):
-        """Initialize API."""
+        """Initialize API.
+
+        Arguments.
+        -----------
+
+        :param `public_key`: Public key from developers portal.
+        :param `api_key`: API key from developers portal.
+        :param `env`: Environment either **sandbox** or **production**.
+        """
         self.public_key = public_key
         self.api_key = api_key
-        self.sandbox_path = sandbox_path
-        self.live_path = live_path
+        self.sandbox_path = "/sandbox/ipg/v2/vodafoneGHA/"
+        self.live_path = "/openapi/ipg/v2/vodafoneGHA/"
 
     def _create_context(
         self,
@@ -85,7 +91,7 @@ class API:
         TransactionReference: str,
         PurchasedItemsDesc: str,
         Country: str = "GHA",
-        Currency="GHS",
+        Currency: str = "GHS",
     ):
         """C2B Single Stage.
 
@@ -136,7 +142,7 @@ class API:
         TransactionReference: str,
         PaymentItemsDesc: str,
         Country: str = "GHA",
-        Currency="GHS",
+        Currency: str = "GHS",
     ):
         """B2C Single Stage.
 
@@ -187,7 +193,7 @@ class API:
         TransactionReference: str,
         PurchasedItemsDesc: str,
         Country: str = "GHA",
-        Currency="GHS",
+        Currency: str = "GHS",
     ):
         """B2B Single Stage.
 
@@ -384,7 +390,7 @@ class API:
         ThirdPartyConversationID: str,
         ThirdPartyReference: str,
         Country: str = "GHA",
-        Currency="GHS",
+        Currency: str = "GHS",
     ):
         """Direct Debit Payment.
 

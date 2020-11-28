@@ -1,0 +1,179 @@
+#Validation request.
+{
+  "TransactionType": "",
+   "TransID": "LHG31AA5TX",
+  "TransTime": "20170816190243",
+  "TransAmount": "200.00",
+  "BusinessShortCode": "600610",
+  "BillRefNumber": "account",
+  "InvoiceNumber": "",
+  "OrgAccountBalance": "",
+  "ThirdPartyTransID": "",
+  "MSISDN": "254708374149",
+  "FirstName": "John",
+  "MiddleName": "",
+  "LastName": "Doe"
+}
+
+#Validation accept response.
+{
+  "ResultCode": 0,
+  "ResultDesc": "Accepted"
+}
+
+#Validation reject response.
+{
+  "ResultCode": 1,
+  "ResultDesc": "Rejected"
+}
+# Confirmation request
+{
+  "C2BPaymentConfirmationResult": "Success"
+}
+
+
+# A callback from MPesa can either be a success callback or a failure callback. A sample of a successful transaction callback is as shown below:
+
+{
+"Result":
+{
+"ResultType":0,
+"ResultCode":0,
+"ResultDesc":"The service request has been accepted successfully.",
+"OriginatorConversationID":"14593-80515-2",
+"ConversationID":"AG_20170821_000049448b24712383de",
+"TransactionID":"LHL41AHJ6G",
+"ResultParameters":
+{
+"ResultParameter":
+[
+{
+"Key":"TransactionAmount",
+"Value":100
+},
+ {
+"Key":"TransactionReceipt",
+"Value":"LHL41AHJ6G"
+},
+{
+"Key":"B2CRecipientIsRegisteredCustomer",
+"Value":"Y"
+ },
+ {
+"Key":"B2CChargesPaidAccountAvailableFunds",
+"Value":0.00
+ },
+{
+"Key":"ReceiverPartyPublicName",
+"Value":"254708374149 - John Doe"
+},
+{
+"Key":"TransactionCompletedDateTime",
+"Value":"21.08.2017 12:01:59"
+},
+{
+"Key":"B2CUtilityAccountAvailableFunds",
+"Value":98834.00
+},
+{
+"Key":"B2CWorkingAccountAvailableFunds",
+"Value":100000.00
+}
+]
+},
+"ReferenceData":
+{
+"ReferenceItem":
+{
+"Key":"QueueTimeoutURL",
+"Value":"https:\/\/internalsandbox.safaricom.co.ke\/mpesa\/b2cresults\/v1\/submit"
+}
+}
+}
+}
+
+
+# For an unsuccessful transaction, the response format will be:
+
+{
+"Result":
+{
+"ResultType":0,
+"ResultCode":>17,
+"ResultDesc":"System internal error.",
+"OriginatorConversationID":"16940-3815719-3",
+"ConversationID":"AG_20171228_00004fd3a482e7f73145",
+"TransactionID":"LLS81H3W6E",
+"ReferenceData":
+{
+"ReferenceItem":
+{
+"Key":"QueueTimeoutURL",
+"Value":"https:\/\/internalsandbox.safaricom.co.ke\/mpesa\/b2cresults\/v1\/submit"
+}
+}
+}
+}
+
+
+# After sending the callback, and assuming a customer has accepted your request and responded to it, a successful callback will have the structure below:
+
+{
+ "Body":
+ {"stkCallback":
+  {
+   "MerchantRequestID": "21605-295434-4",
+   "CheckoutRequestID": "ws_CO_04112017184930742",
+   "ResultCode": 0,
+   "ResultDesc": "The service request is processed successfully.",
+   "CallbackMetadata":
+    {
+     "Item":
+     [
+     {
+       "Name": "Amount",
+       "Value": 1
+     },
+     {
+       "Name": "MpesaReceiptNumber",
+       "Value": "LK451H35OP"
+     },
+     {
+       "Name": "Balance"
+     },
+     {
+       "Name": "TransactionDate",
+       "Value": 20171104184944
+      },
+     {
+       "Name": "PhoneNumber",
+       "Value": 254727894083
+     }
+     ]
+    }
+  }
+ }
+}
+
+
+# Reversal Response A successful callback will be as shown below:
+
+{
+   "Result":
+   {
+    "ResultType":0,
+    "ResultCode":0,
+    "ResultDesc":"The service request has been accepted successfully.",
+    "OriginatorConversationID":"10819-695089-1",
+    "ConversationID":"AG_20170727_00004efadacd98a01d15",
+    "TransactionID":"LGR019G3J2",
+    "ReferenceData":
+    {
+     "ReferenceItem":
+     {
+       "Key":"QueueTimeoutURL",
+       "Value":"https://internalsandbox.safaricom.co.ke/mpesa/reversalresults/v1/submit"
+     }
+    }
+   }
+ }

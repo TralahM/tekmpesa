@@ -1,0 +1,57 @@
+<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap='http://www.4cgroup.co.za/soapauth' xmlns:gen='http://www.4cgroup.co.za/genericsoap'>
+  <soapenv:Body>
+    <gen:getGenericResult>
+      <Request>
+        <dataItem>
+          <name>ResultType</name>
+          <value>-1</value>
+          <type>String</type>
+        </dataItem>
+        <dataItem>
+          <name>ResultCode</name>
+          <value>-3</value>
+          <type>String</type>
+        </dataItem>
+        <dataItem>
+          <name>ResultDesc</name>
+          <value>Failed response initiating payment .</value>
+          <type>String</type>
+        </dataItem>
+        <dataItem>
+          <name>OriginatorConversationID</name>
+          <value>-1</value><type>String</type>
+        </dataItem>
+        <dataItem>
+          <name>Conver sationID</name>
+          <value>-1</value>
+          <type>String</type>
+        </dataItem>
+        <dataItem>
+          <name>ThirdPartyReference</name>
+          <value>R20201127204705</value>
+          <type>String</type>
+        </dataItem>
+        <dataItem>
+          <name>Amount</name>
+          <value>1000</value>
+          <type>String</type>
+        </dataItem>
+        <dataItem>
+          <name>TransactionTime</name>
+          <value>-1</value>
+          <type>String</type>
+        </dataItem>
+        <dataItem>
+          <name>InsightReference</name>
+          <value>B51D9D0A488C5882E0536C045A0AFD1D</value>
+          <type>String</type>
+        </dataItem>
+        <dataItem>
+          <name>TransactionID</name>
+          <value>-1</value>
+          <type>String</type>
+        </dataItem>
+      </Request>
+    </gen:getGenericResult>
+  </soapenv:Body>
+</soapenv:Envelope>

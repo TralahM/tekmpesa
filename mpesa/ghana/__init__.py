@@ -63,7 +63,7 @@ class API:
         if not result:
             raise Exception("API Call Failed to get Result. Please Check.")
         print(result.status_code)
-        print(result.body, type(result.body))
+        print(result.body)  # , type(result.body))-->dict
         return result.body
 
     @property

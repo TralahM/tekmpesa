@@ -63,18 +63,19 @@ class API:
         if not result:
             raise Exception("API Call Failed to get Result. Please Check.")
         print(result.status_code)
-        print(result.body)  # , type(result.body))-->dict
+        # print(result.body)  # , type(result.body))-->dict
         return result.body
 
     @property
     def session_id(self):
         """Return session_id."""
+        endpoint = "getSession/"
         method_type = APIMethodType.GET
         api_key = self.api_key
         if self.env == "production":
-            path = self.live_path + "getSession/"
+            path = self.live_path + endpoint
         else:
-            path = self.sandbox_path + "getSession/"
+            path = self.sandbox_path + endpoint
         body = self._execute(
             self._create_context(
                 path,
@@ -244,7 +245,6 @@ class API:
         ServiceProviderCode: str,
         ThirdPartyConversationID: str,
         TransactionID: str,
-        PurchasedItemsDesc: str,
         Country: str = "GHA",
     ):
         """Reversal API.

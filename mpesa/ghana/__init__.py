@@ -1,6 +1,6 @@
 """Ghana MPESA API."""
 from time import sleep
-from portalsdk import (
+from mpesa.portalsdk import (
     APIContext,
     APIMethodType,
     APIRequest,
@@ -27,6 +27,7 @@ class API:
         """
         self.public_key = public_key
         self.api_key = api_key
+        self.env = env
         self.sandbox_path = "/sandbox/ipg/v2/vodafoneGHA/"
         self.live_path = "/openapi/ipg/v2/vodafoneGHA/"
 
@@ -45,12 +46,13 @@ class API:
         api_context.ssl = True
         api_context.port = 443
         api_context.api_key = api_key
+        api_context.path = path
         api_context.method_type = method_type
         [api_context.add_header(k, v) for k, v in headers.items()]
         [api_context.add_parameter(k, v) for k, v in params.items()]
         return api_context
 
-    def _execute_request(self, context: APIContext):
+    def _execute(self, context: APIContext):
         """Return result.body after makiing request with `context`."""
         api_request = APIRequest(context)
         result = None
@@ -70,9 +72,9 @@ class API:
         method_type = APIMethodType.GET
         api_key = self.api_key
         if self.env == "production":
-            path = self.live_path + "getSession"
+            path = self.live_path + "getSession/"
         else:
-            path = self.sandbox_path + "getSession"
+            path = self.sandbox_path + "getSession/"
         body = self._execute(
             self._create_context(
                 path,

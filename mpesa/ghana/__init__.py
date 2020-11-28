@@ -8,7 +8,7 @@ from mpesa.portalsdk import (
 
 
 class API:
-    """Ghana Openapi Market API."""
+    """Ghana Market API."""
 
     def __init__(
         self,

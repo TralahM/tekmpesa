@@ -1,0 +1,25 @@
+author_email: musyoki.brian@tralahtek.com
+author_name: Tralah M Brian
+author_username: TralahM
+console_scripts: ''
+install_requires:
+- requests
+- urllib3
+- pycryptodome
+- certifi
+- chardet
+- idna
+- six
+- pytest
+- future
+- jinja2
+- lxml
+- PyYaml
+language: python
+licence: GPLv2
+package_name: tekmpesa
+program_description: All Mpesa APIs for All 8 Countries
+program_name: tekmpesa
+readthedocs: true
+repo_name: tekmpesa
+version: 1.0.0

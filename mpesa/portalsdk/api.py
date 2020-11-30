@@ -1,6 +1,6 @@
+"""Mpesa PortalSDK API Helper Module."""
 import json
 from enum import Enum
-from pprint import pprint
 
 import requests
 from base64 import b64decode, b64encode
@@ -9,13 +9,24 @@ from Crypto.Cipher import PKCS1_v1_5 as Cipher_PKCS1_v1_5
 
 
 class APIRequest:
+    """API Request Class.
+
+    :param context: context under which to create the API Request.
+    :type context: :class: `mpesa.portalsdk.APIContext`.
+    """
+
     def __init__(self, context=None):
+        """Construct."""
         self.context = context
 
     def execute(self):
+        """Execute API Request using ``self.context``.
+
+        :return: response object of :class: `mpesa.portalsdk.APIResponse`.
+        :rtype: :class: `mpesa.portalsdk.APIResponse`.
+        """
         if self.context is not None:
             self.create_default_headers()
-            # pprint(self.context)
             try:
                 return {
                     APIMethodType.GET: self.__get,
@@ -29,6 +40,7 @@ class APIRequest:
             raise TypeError("Context cannot be None.")
 
     def create_bearer_token(self):
+        """Return encrypted context api_key using the context public_key."""
         key_der = b64decode(self.context.public_key)
         key_pub = RSA.importKey(key_der)
         cipher = Cipher_PKCS1_v1_5.new(key_pub)
@@ -38,6 +50,7 @@ class APIRequest:
         return encrypted_msg
 
     def create_default_headers(self):
+        """Add some default headers to ``self.context``."""
         self.context.add_header(
             "Authorization",
             "Bearer {}".format(self.create_bearer_token().decode("utf-8")),
@@ -46,6 +59,7 @@ class APIRequest:
         self.context.add_header("Host", self.context.address)
 
     def __get(self):
+        """Return :class: `mpesa.portalsdk.APIResponse` after GET Request."""
         r = requests.get(
             self.context.get_url(),
             params=self.context.get_parameters(),
@@ -60,6 +74,7 @@ class APIRequest:
         )
 
     def __post(self):
+        """Return :class: `mpesa.portalsdk.APIResponse` after POST Request."""
         r = requests.post(
             self.context.get_url(),
             headers=self.context.get_headers(),
@@ -73,6 +88,7 @@ class APIRequest:
         )
 
     def __put(self):
+        """Return :class: `mpesa.portalsdk.APIResponse` after PUT Request."""
         print("PUT")
         r = requests.put(
             self.context.get_url(),
@@ -87,11 +103,23 @@ class APIRequest:
         )
 
     def __unknown(self):
+        """Raise Unknown Method Exception."""
         raise Exception("Unknown Method")
 
 
 class APIResponse(dict):
+    """API Response Class.
+
+    :param status_code: String representing HTTP Status Code.
+    :param headers: Dict object of key,value headers.
+    :param body: Dict object of key,value pairs.
+    :type status_code: str
+    :type headers: dict
+    :type body: dict
+    """
+
     def __init__(self, status_code, headers, body):
+        """Constructor."""
         super(APIResponse, self).__init__()
         self["status_code"]: str = status_code
         self["headers"]: dict = headers
@@ -99,6 +127,7 @@ class APIResponse(dict):
 
     @property
     def status_code(self) -> int:
+        """Return HTTP Status Code."""
         return self["status_code"]
 
     @status_code.setter
@@ -110,6 +139,7 @@ class APIResponse(dict):
 
     @property
     def headers(self) -> dict:
+        """Return HTTP Headers."""
         return self["headers"]
 
     @headers.setter
@@ -121,6 +151,7 @@ class APIResponse(dict):
 
     @property
     def body(self) -> dict:
+        """Return HTTP Body."""
         return self["body"]
 
     @body.setter
@@ -132,6 +163,8 @@ class APIResponse(dict):
 
 
 class APIMethodType(Enum):
+    """API Method Type Class."""
+
     GET: int = 0
     POST: int = 1
     PUT: int = 3
@@ -139,6 +172,28 @@ class APIMethodType(Enum):
 
 
 class APIContext(dict):
+    """API Context Class.
+
+    :param api_key: API Key.
+    :param public_key: Public Key.
+    :param ssl: Whether to use ssl, defaults ``False``.
+    :param method_type: HTTP Method Type, defaults ``APIMethodType.GET``.
+    :param address: Address, defaults ``""``.
+    :param port: Port, defaults ``80``.
+    :param path: URL path, defaults ``""``.
+    :param headers: Headers, defaults ``{}``.
+    :param parameters: Parameters, defaults ``{}``.
+    :type api_key: str.
+    :type public_key: str.
+    :type ssl: bool.
+    :type method_type: :class: `APIMethodType`, optional.
+    :type address: str.
+    :type port: int.
+    :type path: str.
+    :type headers: dict.
+    :type parameters: dict.
+    """
+
     def __init__(
         self,
         api_key="",
@@ -164,25 +219,31 @@ class APIContext(dict):
         self["parameters"]: dict = parameters
 
     def get_url(self):
+        """Return formed url from context data."""
         if self.ssl is True:
             return "https://{}:{}{}".format(self.address, self.port, self.path)
         else:
             return "http://{}:{}{}".format(self.address, self.port, self.path)
 
     def add_header(self, header, value):
+        """Update Headers dict with header,value."""
         self["headers"].update({header: value})
 
     def get_headers(self):
+        """Return self headers."""
         return self["headers"]
 
     def add_parameter(self, key, value):
+        """Update Parameters dict with key,value."""
         self["parameters"].update({key: value})
 
     def get_parameters(self):
+        """Return self parameters."""
         return self["parameters"]
 
     @property
     def api_key(self) -> str:
+        """Return self api_key."""
         return self["api_key"]
 
     @api_key.setter
@@ -194,6 +255,7 @@ class APIContext(dict):
 
     @property
     def public_key(self) -> str:
+        """Return self public_key."""
         return self["public_key"]
 
     @public_key.setter
@@ -205,6 +267,7 @@ class APIContext(dict):
 
     @property
     def ssl(self) -> bool:
+        """Return self ssl."""
         return self["ssl"]
 
     @ssl.setter
@@ -216,6 +279,7 @@ class APIContext(dict):
 
     @property
     def method_type(self) -> APIMethodType:
+        """Return self method_type."""
         return self["method_type"]
 
     @method_type.setter
@@ -227,6 +291,7 @@ class APIContext(dict):
 
     @property
     def address(self) -> str:
+        """Return self address."""
         return self["address"]
 
     @address.setter
@@ -238,6 +303,7 @@ class APIContext(dict):
 
     @property
     def port(self) -> int:
+        """Return self port."""
         return self["port"]
 
     @port.setter
@@ -249,6 +315,7 @@ class APIContext(dict):
 
     @property
     def path(self) -> str:
+        """Return self path."""
         return self["path"]
 
     @path.setter

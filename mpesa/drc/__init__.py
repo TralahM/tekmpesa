@@ -1,4 +1,13 @@
-"""Democratic Republic of Congo MPESA SDK Implementation."""
+"""Democratic Republic of Congo MPESA SDK Implementation.
+
+.. note::
+    This API need to be called from a Server/Computer whose Public IP Address
+    has been WhiteListed by the Vodacom MPESA Team from the DRC.
+
+    Only WhiteListed IPs are able to access the Remote APIs.
+
+    So Ensure your server IP is White Listed before Using this API.
+"""
 import requests
 import typing
 from mpesa.drc.generators import (

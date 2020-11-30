@@ -1,10 +1,4 @@
-"""
-Description: Kenya MPESA Implementation.
-
-Author: Tralah M Brian
-Email: musyoki.brian@tralahtek.com
-Github: https://github.com/TralahM
-"""
+"""Kenya MPESA SDK Implementation."""
 
 import datetime
 import base64
@@ -15,52 +9,57 @@ __all__ = [
     "API",
 ]
 
+__author__ = "Tralah M Brian"
+__email__ = "musyoki.brian@tralahtek.com"
+__github__ = "https://github.com/TralahM"
+
 
 class API:
     """Daraja MPESA API.
 
-    Attributes
-    -----------
-    - *authentication_token* : Property method for returning oauth_token.
+    :param env:  The target environment defaults *sandbox*. *sandbox* or *production*.
+    :type env: str
+    :param app_key: The *app_key* from developers portal.
+    :type app_key: str
+    :param app_secret: The *app_secret* from developers portal.
+    :type app_secret: str
 
-    Methods.
-    ----------
-    - `authenticate()`: Performs Authentication.
-    - `b2b()`: Business to Business Transactions.
-    - `b2c()`: Business to Customer Transactions.
-    - `balance()`: Get Balance of Account.
-    - `c2b_register_url()`: Register Url to Receive C2B Transaction Responses.
-    - `c2b_simulate()`: Simulate C2B Transactions.
-    - `lnmo_status()`: Get status of MPESA Express(LNMO) Transactions.
-    - `lnmo_stkpush()`: Initiate MPESA Express(LNMO) Checkouts.
-    - `reverse()`: Reverse MPESA Transactions.
-    - `transaction_status`: Get status of MPESA Transactions.
+    **Attributes**
+
+    .. attribute:: sandbox_url
+
+        The sandbox environment host url "https://sandbox.safaricom.co.ke"
+
+    .. attribute:: live_url
+
+        The live/production environment host url "https://api.safaricom.co.ke"
+
+
+    **Methods.**
+
 
     """
 
     def __init__(
         self,
-        env="sandbox",
-        app_key=None,
-        app_secret=None,
-        sandbox_url="https://sandbox.safaricom.co.ke",
-        live_url="https://api.safaricom.co.ke",
+        env: str = "sandbox",
+        app_key: str = None,
+        app_secret: str = None,
     ):
         """Initialize API.
 
-        Parameters.
-        -------------
-        :param `env`:  The target environment. *sandbox* or *production*.
-        :param `app_key`: The *app_key* from developers portal.
-        :param `app_secret`: The *app_secret* from developers portal.
-        :param `sandbox_url`: The *sandbox_url* default <https://sandbox.safaricom.co.ke>.
-        :param `live_url`: The *live_url* default <https://api.safaricom.co.ke>.
+        :param env:  The target environment. *sandbox* or *production*.
+        :type env: str
+        :param app_key: The *app_key* from developers portal.
+        :type app_key: str
+        :param app_secret: The *app_secret* from developers portal.
+        :type app_secret: str
         """
         self.env = env
         self.app_key = app_key
         self.app_secret = app_secret
-        self.sandbox_url = sandbox_url
-        self.live_url = live_url
+        self.sandbox_url = "https://sandbox.safaricom.co.ke"
+        self.live_url = "https://api.safaricom.co.ke"
 
     @property
     def authentication_token(self):
@@ -72,14 +71,16 @@ class API:
 
         This method is used to fetch the access token required by Mpesa.
         Mpesa supports client_credentials grant type.
-        To authorize your API calls to Mpesa, you will need a Basic Auth over HTTPS authorization token.
+
+        To authorize your API calls to Mpesa, you will need a Basic Auth over
+            HTTPS authorization token.
+
         The Basic Auth string is a base64 encoded string
-        of your app's client key and client secret.
+            of your app's client key and client secret.
 
-        Returns.
-        --------------
 
-        - `access_token` (str): This token is to be used with the Bearer header for further API calls to Mpesa.
+        :returns: `access_token`  This token is to be used with the Bearer header for further API calls to Mpesa.
+        :rtype: str
 
         """
         if self.env == "production":
@@ -104,60 +105,76 @@ class API:
 
     def b2b(
         self,
-        initiator=None,
-        security_credential=None,
-        command_id=None,
-        sender_identifier_type=None,
-        receiver_identifier_type=None,
-        amount=None,
-        party_a=None,
-        party_b=None,
-        remarks=None,
-        account_reference=None,
-        queue_timeout_url=None,
-        result_url=None,
+        initiator: str = None,
+        security_credential: str = None,
+        command_id: str = None,
+        sender_identifier_type: str = None,
+        receiver_identifier_type: str = None,
+        amount: str = None,
+        party_a: str = None,
+        party_b: str = None,
+        remarks: str = None,
+        account_reference: str = None,
+        queue_timeout_url: str = None,
+        result_url: str = None,
     ):
-        """This method uses Mpesa's B2B API to transact from one company to another.
-
-        Arguments.
-        -----------
-
-        - `initiator` (str): Username used to authenticate the transaction.
-
-        - `security_credential` (str): Generate from developer portal
-
-        - `command_id` (str): Options: BusinessPayBill, BusinessBuyGoods, DisburseFundsToBusiness, BusinessToBusinessTransfer ,BusinessTransferFromMMFToUtility, BusinessTransferFromUtilityToMMF, MerchantToMerchantTransfer, MerchantTransferFromMerchantToWorking, MerchantServicesMMFAccountTransfer, AgencyFloatAdvance
-
-        - `sender_identifier_type` (str): 2 for Till Number, 4 for organization shortcode
-
-        - `receiver_identifier_type` (str): # 2 for Till Number, 4 for organization shortcode
-
-        - `amount` (str): Amount.
-
-        - `party_a` (int): Sender shortcode.
-
-        - `party_b` (int): Receiver shortcode.
-
-        - `remarks` (str): Comments that are sent along with the transaction(maximum 100 characters).
-
-        - `account_reference` (str): Use if doing paybill to banks etc.
-
-        - `queue_timeout_url` (str): The url that handles information of timed out transactions.
-
-        - `result_url` (str): The url that receives results from M-Pesa api call.
+        """Uses the B2B API to transact from one company to another.
 
 
+        :param initiator: Username used to authenticate the transaction.
+        :type initiator: str
 
-        Returns.
-        ---------
+        :param security_credential: Generate from developer portal
+        :type security_credential: str
 
-        - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.
+        :param command_id: Options:
+            BusinessPayBill, BusinessBuyGoods, DisburseFundsToBusiness,
+            BusinessToBusinessTransfer ,BusinessTransferFromMMFToUtility,
+            BusinessTransferFromUtilityToMMF, MerchantToMerchantTransfer,
+            MerchantTransferFromMerchantToWorking,
+            MerchantServicesMMFAccountTransfer, AgencyFloatAdvance
+        :type command_id: str
 
-        - `ConversationID` (str): The unique request ID returned by mpesa for each request made
+        :param sender_identifier_type: 2 for Till Number,
+            4 for organization shortcode.
+        :type sender_identifier_type: str
 
-        - `ResponseDescription` (str): Response Description message
+        :param receiver_identifier_type: 2 for Till Number,
+            4 for organization shortcode.
+        :type receiver_identifier_type: str
+
+        :param amount: Amount.
+        :type amount: str
+
+        :param party_a: Sender shortcode.
+        :type party_a: str
+
+        :param party_b: Receiver shortcode.
+        :type party_b: str
+
+        :param remarks: Remarks.
+        :type remarks: str
+
+        :param account_reference: Use if doing paybill to banks etc.
+        :type account_reference: str
+
+        :param queue_timeout_url: The url that handles information of timed out
+            transactions.
+        :type queue_timeout_url: str
+
+        :param result_url: The url that receives results from M-Pesa api call.
+        :type result_url: str
 
 
+        :return: Dict object of
+
+            - OriginatorConverstionID (str): The unique request ID for tracking a transaction.
+
+            - ConversationID (str): The unique request ID returned by mpesa for each request made
+
+            - ResponseDescription (str): Response Description message
+
+        :rtype: dict
 
         """
 
@@ -194,54 +211,56 @@ class API:
 
     def b2c(
         self,
-        initiator_name=None,
-        security_credential=None,
-        command_id=None,
-        amount=None,
-        party_a=None,
-        party_b=None,
-        remarks=None,
-        queue_timeout_url=None,
-        result_url=None,
-        occassion=None,
+        initiator_name: str = None,
+        security_credential: str = None,
+        command_id: str = None,
+        amount: str = None,
+        party_a: str = None,
+        party_b: str = None,
+        remarks: str = None,
+        queue_timeout_url: str = None,
+        result_url: str = None,
+        occassion: str = None,
     ):
         """This method uses Mpesa's B2C API to transact between an M-Pesa short code to a phone number registered on M-Pesa..
 
-        Args.
-        --------------
+        :param initiator_name: Username used to authenticate the transaction.
+        :param security_credential: Generate from developer portal
+        :param command_id: Options: SalaryPayment, BusinessPayment,
+            PromotionPayment.
+        :param amount: Amount.
+        :param party_a: Organization/MSISDN making the transaction
+            - Shortcode (6 digits) - MSISDN (12 digits).
+        :param party_b: MSISDN receiving the transaction (12 digits).
+        :param remarks: Comments that are sent along with the
+            transaction(maximum 100 characters).
+        :param account_reference: Use if doing paybill to banks etc.
+        :param queue_timeout_url: The url that handles information of timed
+            out transactions.
+        :param result_url: The url that receives results from M-Pesa api call.
+        :param ocassion: occasion.
+        :type initiator_name: str
+        :type security_credential: str
+        :type command_id: str
+        :type amount: str
+        :type party_a: str
+        :type party_b: str
+        :type remarks: str
+        :type account_reference: str
+        :type queue_timeout_url: str
+        :type result_url: str
+        :type ocassion: str
 
-        - `initiator_name` (str): Username used to authenticate the transaction.
 
-        - `security_credential` (str): Generate from developer portal
+        :return: Dict object of
+            - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.
 
-        - `command_id` (str): Options: SalaryPayment, BusinessPayment, PromotionPayment
+            - `ConversationID` (str): The unique request ID returned by mpesa for each request made
 
-        - `amount`(str): Amount.
+            - `ResponseDescription` (str): Response Description message
+        :rtype: dict
 
-        - `party_a` (int): Organization/MSISDN making the transaction - Shortcode (6 digits) - MSISDN (12 digits).
-
-        - `party_b` (int): MSISDN receiving the transaction (12 digits).
-
-        - `remarks` (str): Comments that are sent along with the transaction(maximum 100 characters).
-
-        - `account_reference` (str): Use if doing paybill to banks etc.
-
-        - `queue_timeout_url` (str): The url that handles information of timed out transactions.
-
-        - `result_url` (str): The url that receives results from M-Pesa api call.
-
-        - `ocassion` (str):
-
-
-
-        Returns.
-        --------------
-
-        - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.
-
-        - `ConversationID` (str): The unique request ID returned by mpesa for each request made
-
-        - `ResponseDescription` (str): Response Description message
+        :Example:
 
         .. code-block:: json
 
@@ -285,46 +304,45 @@ class API:
 
     def balance(
         self,
-        initiator=None,
-        security_credential=None,
-        command_id=None,
-        party_a=None,
-        identifier_type=None,
-        remarks=None,
-        queue_timeout_url=None,
-        result_url=None,
+        initiator: str = None,
+        security_credential: str = None,
+        command_id: str = None,
+        party_a: str = None,
+        identifier_type: str = None,
+        remarks: str = None,
+        queue_timeout_url: str = None,
+        result_url: str = None,
     ):
         """This method uses Mpesa's Account Balance API to to enquire the balance on an M-Pesa BuyGoods (Till Number).
 
-        Args.
-        --------------
 
-        - `initiator` (str): Username used to authenticate the transaction.
-
-        - `security_credential` (str): Generate from developer portal.
-
-        - `command_id` (str): AccountBalance.
-
-        - `party_a` (int): Till number being queried.
-
-        - `identifier_type` (int): Type of organization receiving the transaction. Options: 1 - MSISDN 2 - Till Number  4 - Organization short code
-
-        - `remarks` (str): Comments that are sent along with the transaction(maximum 100 characters).
-
-        - `queue_timeout_url` (str): The url that handles information of timed out transactions.
-
-        - `result_url` (str): The url that receives results from M-Pesa api call.
-
+        :param initiator: Username used to authenticate the transaction.
+        :param security_credential: Generate from developer portal.
+        :param command_id: AccountBalance.
+        :param party_a: Till number being queried.
+        :param identifier_type: Type of organization receiving the transaction. Options: 1 - MSISDN 2 - Till Number  4 - Organization short code
+        :param remarks: Comments that are sent along with the transaction(maximum 100 characters).
+        :param queue_timeout_url: The url that handles information of timed out transactions.
+        :param result_url: The url that receives results from M-Pesa api call.
+        :type initiator: str
+        :type security_credential: str
+        :type command_id: str
+        :type party_a: str
+        :type identifier_type: str
+        :type remarks: str
+        :type queue_timeout_url: str
+        :type result_url: str
 
 
-        Returns.
-        --------------
 
-        - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.
+        :return: Dict object of
 
-        - `ConversationID` (str): The unique request ID returned by mpesa for each request made
+            - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.
 
-        - `ResponseDescription` (str): Response Description message
+            - `ConversationID` (str): The unique request ID returned by mpesa for each request made
+
+            - `ResponseDescription` (str): Response Description message
+        :rtype: dict
 
 
         """
@@ -358,35 +376,35 @@ class API:
 
     def c2b_register_url(
         self,
-        shortcode=None,
-        response_type=None,
-        confirmation_url=None,
-        validation_url=None,
+        shortcode: str = None,
+        response_type: str = None,
+        confirmation_url: str = None,
+        validation_url: str = None,
     ):
         """This method uses Mpesa's C2B API to register validation and confirmation URLs on M-Pesa.
 
-        Args.
-        --------------
 
-        - `shortcode` (int): The short code of the organization.
-
-        - `response_type` (str): Default response type for timeout. Incase a tranaction times out, Mpesa will by default Complete or Cancel the transaction.
-
-        - `confirmation_url` (str): Confirmation URL for the client.
-
-        - `validation_url` (str): Validation URL for the client.
-
+        :param shortcode: The short code of the organization.
+        :param response_type: Default response type for timeout. Incase a tranaction times out, Mpesa will by default Complete or Cancel the transaction.
+        :param confirmation_url: Confirmation URL for the client.
+        :param validation_url: Validation URL for the client.
+        :type shortcode: str
+        :type response_type: str
+        :type confirmation_url: str
+        :type validation_url: str
 
 
-        Returns.
-        --------------
 
-        - `OriginatorConversationID` (str): The unique request ID for tracking a transaction.
+        :return: Dict object of
 
-        - `ConversationID` (str): The unique request ID returned by mpesa for each request made
+            - `OriginatorConversationID` (str): The unique request ID for tracking a transaction.
 
-        - `ResponseDescription` (str): Response Description message
+            - `ConversationID` (str): The unique request ID returned by mpesa for each request made
 
+            - `ResponseDescription` (str): Response Description message
+        :rtype: dict
+
+        :Example:
 
         .. code-block:: json
 
@@ -423,37 +441,35 @@ class API:
 
     def c2b_simulate(
         self,
-        shortcode=None,
-        command_id=None,
-        amount=None,
-        msisdn=None,
-        bill_ref_number=None,
+        shortcode: str = None,
+        command_id: str = None,
+        amount: str = None,
+        msisdn: str = None,
+        bill_ref_number: str = None,
     ):
         """This method uses Mpesa's C2B API to simulate a C2B transaction.
 
-        Args.
-        --------------
 
-        - `shortcode` (int): The short code of the organization.
+        :param shortcode: The short code of the organization.
+        :param command_id: Unique command for each transaction type. - CustomerPayBillOnline - CustomerBuyGoodsOnline.
+        :param amount: The amount being transacted
+        :param msisdn: Phone number (msisdn) initiating the transaction MSISDN(12 digits)
+        :param bill_ref_number: Optional
+        :type shortcode: The short code of the organization.
+        :type command_id: Unique command for each transaction type. - CustomerPayBillOnline - CustomerBuyGoodsOnline.
+        :type amount: The amount being transacted
+        :type msisdn: Phone number (msisdn) initiating the transaction MSISDN(12 digits)
+        :type bill_ref_number: Optional
 
-        - `command_id` (str): Unique command for each transaction type. - CustomerPayBillOnline - CustomerBuyGoodsOnline.
+        :return: Dict object of
 
-        - `amount` (int): The amount being transacted
+            - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.
 
-        - `msisdn` (int): Phone number (msisdn) initiating the transaction MSISDN(12 digits)
+            - `ConversationID` (str): The unique request ID returned by mpesa for each request made
 
-        - `bill_ref_number`: Optional
-
-
-
-        Returns.
-        --------------
-
-        - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.
-
-        - `ConversationID` (str): The unique request ID returned by mpesa for each request made
-
-        - `ResponseDescription` (str): Response Description message
+            - `ResponseDescription` (str): Response Description message
+        :rtype: dict
+        :Example:
 
         .. code-block:: json
 
@@ -491,47 +507,45 @@ class API:
 
     def lnmo_stkpush(
         self,
-        business_shortcode=None,
-        passcode=None,
-        amount=None,
-        callback_url=None,
-        reference_code=None,
-        phone_number=None,
-        description=None,
+        business_shortcode: str = None,
+        passcode: str = None,
+        amount: str = None,
+        callback_url: str = None,
+        reference_code: str = None,
+        phone_number: str = None,
+        description: str = None,
     ):
         """This method uses Mpesa's Express API to initiate online payment on behalf of a customer..
 
-        Args.
-        --------------
 
-        - `business_shortcode` (int): The short code of the organization.
+        :param business_shortcode: The short code of the organization.
+        :param passcode: Get from developer portal
+        :param amount: The amount being transacted
+        :param callback_url: A CallBack URL is a valid secure URL that is used to receive notifications from M-Pesa API.
+        :param reference_code: Account Reference: This is an Alpha-Numeric parameter that is defined by your system as an Identifier of the transaction for CustomerPayBillOnline transaction type.
+        :param phone_number: The Mobile Number to receive the STK Pin Prompt.
+        :param description: This is any additional information/comment that can be sent along with the request from your system. MAX 13 characters
+        :type business_shortcode: str
+        :type passcode: str
+        :type amount: str
+        :type callback_url: str
+        :type reference_code: str
+        :type phone_number: str
+        :type description: str
 
-        - `passcode` (str): Get from developer portal
+        :return: Dict object of
 
-        - `amount` (int): The amount being transacted
+            - `CustomerMessage` (str):
 
-        - `callback_url` (str): A CallBack URL is a valid secure URL that is used to receive notifications from M-Pesa API.
+            - `CheckoutRequestID` (str):
 
-        - `reference_code`: Account Reference: This is an Alpha-Numeric parameter that is defined by your system as an Identifier of the transaction for CustomerPayBillOnline transaction type.
+            - `ResponseDescription` (str):
 
-        - `phone_number`: The Mobile Number to receive the STK Pin Prompt.
+            - `MerchantRequestID` (str):
 
-        - `description`: This is any additional information/comment that can be sent along with the request from your system. MAX 13 characters
-
-
-
-        Returns.
-        --------------
-
-        - `CustomerMessage` (str):
-
-        - `CheckoutRequestID` (str):
-
-        - `ResponseDescription` (str):
-
-        - `MerchantRequestID` (str):
-
-        - `ResponseCode` (str):
+            - `ResponseCode` (str):
+        :rtype: dict
+        :Example:
 
         .. code-block:: json
 
@@ -587,34 +601,34 @@ class API:
         return r.json()
 
     def lnmo_status(
-        self, business_shortcode=None, checkout_request_id=None, passcode=None
+        self,
+        business_shortcode: str = None,
+        checkout_request_id: str = None,
+        passcode: str = None,
     ):
         """This method uses Mpesa's Express API to check the status of a Lipa Na M-Pesa Online Payment..
 
-        Args.
-        --------------
 
-        - `business_shortcode` (int): This is organizations shortcode (Paybill or Buygoods - A 5 to 6 digit account number) used to identify an organization and receive the transaction.
-
-        - `checkout_request_id` (str): This is a global unique identifier of the processed checkout transaction request.
-
-        - `passcode` (str): Get from developer portal
-
-
-        Returns.
-        --------------
-
-        - `CustomerMessage` (str):
-
-        - `CheckoutRequestID` (str):
-
-        - `ResponseDescription` (str):
-
-        - `MerchantRequestID` (str):
-
-        - `ResponseCode` (str):
+        :param business_shortcode: This is organizations shortcode (Paybill or Buygoods - A 5 to 6 digit account number) used to identify an organization and receive the transaction.
+        :param checkout_request_id: This is a global unique identifier of the processed checkout transaction request.
+        :param passcode: Get from developer portal
+        :type business_shortcode: str
+        :type checkout_request_id: str
+        :type passcode: str
 
 
+        :return: Dict object of
+
+            - `CustomerMessage` (str):
+
+            - `CheckoutRequestID` (str):
+
+            - `ResponseDescription` (str):
+
+            - `MerchantRequestID` (str):
+
+            - `ResponseCode` (str):
+        :rtype: dict
         """
 
         time = (
@@ -652,55 +666,52 @@ class API:
 
     def reverse(
         self,
-        initiator=None,
-        security_credential=None,
+        initiator: str = None,
+        security_credential: str = None,
         command_id="TransactionReversal",
-        transaction_id=None,
-        amount=None,
-        receiver_party=None,
-        receiver_identifier_type=None,
-        queue_timeout_url=None,
-        result_url=None,
-        remarks=None,
-        occassion=None,
+        transaction_id: str = None,
+        amount: str = None,
+        receiver_party: str = None,
+        receiver_identifier_type: str = None,
+        queue_timeout_url: str = None,
+        result_url: str = None,
+        remarks: str = None,
+        occassion: str = None,
     ):
         """This method uses Mpesa's Transaction Reversal API to reverse a M-Pesa transaction.
 
-        Args.
-        --------------
+        :param initiator: Username used to authenticate the transaction.
+        :param security_credential: Generate from developer portal
+        :param command_id: TransactionReversal
+        :param transaction_id: Unique identifier to identify a transaction on M-Pesa.
+        :param amount: The amount being transacted
+        :param receiver_party: Organization/MSISDN making the transaction - Shortcode (6 digits) - MSISDN (12 digits).
+        :param receiver_identifier_type: MSISDN receiving the transaction (12 digits).
+        :param queue_timeout_url: The url that handles information of timed out transactions.
+        :param result_url: The url that receives results from M-Pesa api call.
+        :param remarks: Comments that are sent along with the transaction(maximum 100 characters)
+        :param occassion: Occassion
+        :type initiator: str
+        :type security_credential: str
+        :type command_id: str
+        :type transaction_id: str
+        :type amount: str
+        :type receiver_party: str
+        :type receiver_identifier_type: str
+        :type queue_timeout_url: str
+        :type result_url: str
+        :type remarks: str
+        :type occassion: str
 
-        - `initiator` (str): Username used to authenticate the transaction.
+        :return: Dict object of
 
-        - `security_credential` (str): Generate from developer portal
+            - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.
 
-        - `command_id` (str): TransactionReversal
+            - `ConversationID` (str): The unique request ID returned by mpesa for each request made
 
-        - `transaction_id` (str): Unique identifier to identify a transaction on M-Pesa.
-
-        - `amount` (int): The amount being transacted
-
-        - `receiver_party` (int): Organization/MSISDN making the transaction - Shortcode (6 digits) - MSISDN (12 digits).
-
-        - `receiver_identifier_type` (int): MSISDN receiving the transaction (12 digits).
-
-        - `queue_timeout_url` (str): The url that handles information of timed out transactions.
-
-        - `result_url` (str): The url that receives results from M-Pesa api call.
-
-        - `remarks` (str): Comments that are sent along with the transaction(maximum 100 characters)
-
-        - `occassion` (str):
-
-
-
-        Returns.
-        --------------
-
-        - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.
-
-        - `ConversationID` (str): The unique request ID returned by mpesa for each request made
-
-        - `ResponseDescription` (str): Response Description message
+            - `ResponseDescription` (str): Response Description message
+        :rtype: dict
+        :Example:
 
         .. code-block:: json
 
@@ -758,63 +769,55 @@ class API:
 
     def transaction_status(
         self,
-        party_a=None,
-        identifier_type=None,
-        remarks=None,
-        initiator=None,
-        passcode=None,
-        result_url=None,
-        queue_timeout_url=None,
-        transaction_id=None,
-        occassion=None,
-        shortcode=None,
+        party_a: str = None,
+        identifier_type: str = None,
+        remarks: str = None,
+        initiator: str = None,
+        passcode: str = None,
+        result_url: str = None,
+        queue_timeout_url: str = None,
+        transaction_id: str = None,
+        occassion: str = None,
+        shortcode: str = None,
     ):
         """This method uses Mpesa's Transaction Status API to check the status of a transaction.
 
-        Args.
-        --------------
 
-        - `party_a` (str): Organization/MSISDN receiving the transaction - MSISDN or shortcode.
+        :param party_a: Organization/MSISDN receiving the transaction - MSISDN or shortcode.
+        :param identifier_type: Type of organization receiving the transaction 1-MSISDN. 2-Till Number, 3-Shortcode.
+        :param remarks: Comments that are sent along with the transaction(maximum 100 characters).
+        :param initiator: This is the credential/username used to authenticate the transaction request.
+        :param passcode: Get from developer portal
+        :param result_url: The url that handles information from the mpesa API call.
+        :param transaction_id: Unique identifier to identify a transaction on M-Pesa.
+        :param queue_timeout_url: The url that stores information of timed out transactions.
+        :param shortcode: The short code of the organization.
+        :param occassion: Occasion
+        :type party_a: str
+        :type identifier_type: str
+        :type remarks: str
+        :type initiator: str
+        :type passcode: str
+        :type transaction_id: str
+        :type queue_timeout_url: str
+        :type result_url: str
+        :type shortcode: str
+        :type occassion: str
 
-        - `identifier_type` (str): Type of organization receiving the transaction 1-MSISDN. 2-Till Number, 3-Shortcode.
+        :return: Dict object of
 
-        - `remarks` (str): Comments that are sent along with the transaction(maximum 100 characters).
+            - `ResultDesc`: ,
 
-        - `initiator` (str): This is the credential/username used to authenticate the transaction request.
+            - `CheckoutRequestID`: ,
 
-        - `passcode` (str): Get from developer portal
+            - `ResponseDescription`: ,
 
-        - `result_url` (str): The url that handles information from the mpesa API call.
+            - `MerchantRequestID`: ,
 
-        - `transaction_id` (str): Unique identifier to identify a transaction on M-Pesa.
+            - `ResponseCode`: ,
 
-        - `queue_timeout_url` (str): The url that stores information of timed out transactions.
-
-        - `result_url` (str): The url that receives results from M-Pesa api call.
-
-        - `shortcode` (int): The short code of the organization.
-
-        - `occassion` (str):
-
-
-
-        Returns.
-        --------------
-
-        - `ResultDesc`: ,
-
-        - `CheckoutRequestID`: ,
-
-        - `ResponseDescription`: ,
-
-        - `MerchantRequestID`: ,
-
-        - `ResponseCode`: ,
-
-        - `ResultCode`:
-
-
-
+            - `ResultCode`:
+        :rtype: dict
         """
 
         time = (

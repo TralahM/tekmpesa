@@ -1,4 +1,4 @@
-"""Ghana MPESA API."""
+"""Ghana MPESA SDK Implementation."""
 from time import sleep
 from mpesa.portalsdk import (
     APIContext,
@@ -8,7 +8,37 @@ from mpesa.portalsdk import (
 
 
 class API:
-    """Ghana Market API."""
+    """Ghana Market API.
+
+    :param public_key: Public key from developers portal.
+    :type public_key: str.
+    :param api_key: API key from developers portal.
+    :type api_key: str.
+    :param env: Environment either **sandbox** or **production**, defaults **sandbox**.
+    :type env: str, optional.
+
+    **Attributes.**
+
+    .. attribute:: sandbox_path
+
+        The sandbox prefix path ``"/sandbox/ipg/v2/vodafoneGHA/"``.
+
+    .. attribute:: live_path
+
+        The live/openapi prefix path ``"/openapi/ipg/v2/vodafoneGHA/"``.
+
+    .. attribute:: Currency
+
+        The Currency used for this API. default ``"GHS"``.
+
+    .. attribute:: Country
+
+        The Country used for this API. default ``"GHA"``.
+
+    **Methods.**
+
+
+    """
 
     def __init__(
         self,
@@ -18,18 +48,22 @@ class API:
     ):
         """Initialize API.
 
-        Arguments.
-        -----------
+        **Arguments.**
 
-        :param `public_key`: Public key from developers portal.
-        :param `api_key`: API key from developers portal.
-        :param `env`: Environment either **sandbox** or **production**.
+        :param public_key: Public key from developers portal.
+        :type public_key: str.
+        :param api_key: API key from developers portal.
+        :type api_key: str.
+        :param env: Environment either **sandbox** or **production**, defaults **sandbox**.
+        :type env: str, optional.
         """
         self.public_key = public_key
         self.api_key = api_key
         self.env = env
         self.sandbox_path = "/sandbox/ipg/v2/vodafoneGHA/"
         self.live_path = "/openapi/ipg/v2/vodafoneGHA/"
+        self.Country = "GHA"
+        self.Currency = "GHS"
 
     def _create_context(
         self,
@@ -62,13 +96,16 @@ class API:
             raise e
         if not result:
             raise Exception("API Call Failed to get Result. Please Check.")
-        print(result.status_code)
         # print(result.body)  # , type(result.body))-->dict
         return result.body
 
     @property
-    def session_id(self):
-        """Return session_id."""
+    def session_id(self) -> str:
+        """Return session_id.
+
+        :return: The sessionID to be used in subsequent requests.
+        :rtype: str.
+        """
         endpoint = "getSession/"
         method_type = APIMethodType.GET
         api_key = self.api_key
@@ -93,10 +130,27 @@ class API:
         ThirdPartyConversationID: str,
         TransactionReference: str,
         PurchasedItemsDesc: str,
-        Country: str = "GHA",
-        Currency: str = "GHS",
     ):
         """C2B Single Stage.
+
+        :param Amount: Amount.
+        :type Amount: str.
+        :param CustomerMSISDN: Customer MSISDN.
+        :type CustomerMSISDN: str.
+        :param ServiceProviderCode: Service Provider Code.
+        :type ServiceProviderCode: str.
+        :param ThirdPartyConversationID: Third Party Conversation ID.
+        :type ThirdPartyConversationID: str.
+        :param TransactionReference: Transaction Reference.
+        :type TransactionReference: str.
+        :param PurchasedItemsDesc: Purchased Items Description.
+        :type PurchasedItemsDesc: str.
+
+
+        :returns: A dictionary object from the C2B API.
+        :rtype: dict.
+
+        :Example:
 
         .. code-block:: json
 
@@ -112,8 +166,8 @@ class API:
         endpoint = "c2bPayment/singleStage/"
         params = {
             "input_Amount": Amount,
-            "input_Country": Country,
-            "input_Currency": Currency,
+            "input_Country": self.Country,
+            "input_Currency": self.Currency,
             "input_CustomerMSISDN": CustomerMSISDN,
             "input_ServiceProviderCode": ServiceProviderCode,
             "input_ThirdPartyConversationID": ThirdPartyConversationID,
@@ -144,10 +198,33 @@ class API:
         ThirdPartyConversationID: str,
         TransactionReference: str,
         PaymentItemsDesc: str,
-        Country: str = "GHA",
-        Currency: str = "GHS",
     ):
         """B2C Single Stage.
+
+        The B2C API Call is used as a standard business-to-customer funds disbursement.
+        Funds from the business account's wallet will be deducted and paid to the mobile money wallet of the customer.
+        Use cases for the B2C includes:
+        - Salary payments
+        - Funds transfers from business
+        - Charity pay-out
+
+        :param Amount: Amount.
+        :type Amount: str.
+        :param CustomerMSISDN: Customer MSISDN.
+        :type CustomerMSISDN: str.
+        :param ServiceProviderCode: Service Provider Code.
+        :type ServiceProviderCode: str.
+        :param ThirdPartyConversationID: Third Party Conversation ID.
+        :type ThirdPartyConversationID: str.
+        :param TransactionReference: Transaction Reference.
+        :type TransactionReference: str.
+        :param PaymentItemsDesc: Payment Items Description.
+        :type PaymentItemsDesc: str.
+
+        :returns: A dictionary object from the B2C API.
+        :rtype: dict.
+
+        :Example:
 
         .. code-block:: json
 
@@ -161,8 +238,8 @@ class API:
         """
         params = {
             "input_Amount": Amount,
-            "input_Country": Country,
-            "input_Currency": Currency,
+            "input_Country": self.Country,
+            "input_Currency": self.Currency,
             "input_CustomerMSISDN": CustomerMSISDN,
             "input_ServiceProviderCode": ServiceProviderCode,
             "input_ThirdPartyConversationID": ThirdPartyConversationID,
@@ -195,10 +272,33 @@ class API:
         ThirdPartyConversationID: str,
         TransactionReference: str,
         PurchasedItemsDesc: str,
-        Country: str = "GHA",
-        Currency: str = "GHS",
     ):
         """B2B Single Stage.
+
+        The B2B API Call is used for business-to-business transactions.
+        Funds from the business' mobile money wallet will be deducted and transferred to the mobile money wallet of the other business.
+        Use cases for the B2B includes:
+        - Stock purchases
+        - Bill payment
+        - Adhoc payment
+
+        :param Amount: Amount.
+        :type Amount: str.
+        :param ReceiverPartyCode: Receiver Party Code.
+        :type ReceiverPartyCode: str.
+        :param PrimaryPartyCode: Primary Party Code.
+        :type PrimaryPartyCode: str.
+        :param ThirdPartyConversationID: Third Party Conversation ID.
+        :type ThirdPartyConversationID: str.
+        :param TransactionReference: Transaction Reference.
+        :type TransactionReference: str.
+        :param PurchasedItemsDesc: Purchased Items Description.
+        :type PurchasedItemsDesc: str.
+
+        :returns: A dictionary object from the B2B API.
+        :rtype: dict.
+
+        :Example:
 
         .. code-block:: json
 
@@ -215,8 +315,8 @@ class API:
         method_type = APIMethodType.POST
         params = {
             "input_Amount": Amount,
-            "input_Country": Country,
-            "input_Currency": Currency,
+            "input_Country": self.Country,
+            "input_Currency": self.Currency,
             "input_PrimaryPartyCode": PrimaryPartyCode,
             "input_ReceiverPartyCode": ReceiverPartyCode,
             "input_ThirdPartyConversationID": ThirdPartyConversationID,
@@ -245,9 +345,25 @@ class API:
         ServiceProviderCode: str,
         ThirdPartyConversationID: str,
         TransactionID: str,
-        Country: str = "GHA",
     ):
         """Reversal API.
+
+        The Reversal API is used to reverse a successful transaction.
+        Using the Transaction ID of a previously successful transaction, the OpenAPI will withdraw the funds from the recipient party’s mobile money wallet and revert the funds to the mobile money wallet of the initiating party of the original transaction.
+
+        :param ReversalAmount: Reversal Amount.
+        :type ReversalAmount: str.
+        :param ServiceProviderCode: Service Provider Code.
+        :type ServiceProviderCode: str.
+        :param ThirdPartyConversationID: Third Party Conversation ID.
+        :type ThirdPartyConversationID: str.
+        :param TransactionID: Transaction ID.
+        :type TransactionID: str.
+
+        :returns: A dictionary object from the Reversal API.
+        :rtype: dict.
+
+        :Example:
 
         .. code-block:: json
 
@@ -262,7 +378,7 @@ class API:
         endpoint = "reversal/"
         method_type = APIMethodType.PUT
         params = {
-            "input_Country": Country,
+            "input_Country": self.Country,
             "input_ReversalAmount": ReversalAmount,
             "input_ServiceProviderCode": ServiceProviderCode,
             "input_ThirdPartyConversationID": ThirdPartyConversationID,
@@ -289,9 +405,22 @@ class API:
         QueryReference: str,
         ServiceProviderCode: str,
         ThirdPartyConversationID: str,
-        Country: str = "GHA",
     ):
         """Query Transaction Status.
+
+        The Query Transaction Status API call is used to query the status of the transaction that has been initiated.
+
+        :param ServiceProviderCode: Service Provider Code.
+        :type ServiceProviderCode: str.
+        :param ThirdPartyConversationID: Third Party Conversation ID.
+        :type ThirdPartyConversationID: str.
+        :param QueryReference: Query Reference.
+        :type QueryReference: str.
+
+        :returns: A dictionary object from the QueryTransactionStatus API.
+        :rtype: dict.
+
+        :Example:
 
         .. code-block:: json
 
@@ -309,7 +438,7 @@ class API:
             "input_QueryReference": QueryReference,
             "input_ServiceProviderCode": ServiceProviderCode,
             "input_ThirdPartyConversationID": ThirdPartyConversationID,
-            "input_Country": Country,
+            "input_Country": self.Country,
         }
         if self.env == "production":
             path = self.live_path + endpoint
@@ -331,19 +460,67 @@ class API:
         self,
         AgreedTC: str,
         CustomerMSISDN: str,
+        ServiceProviderCode: str,
+        ThirdPartyConversationID: str,
+        ThirdPartyReference: str,
+        StartRangeOfDays: str,
         EndRangeOfDays: str,
         ExpiryDate: str,
         FirstPaymentDate: str,
         Frequency: str,
-        ServiceProviderCode: str,
-        StartRangeOfDays: str,
-        ThirdPartyConversationID: str,
-        ThirdPartyReference: str,
-        Country: str = "GHS",
     ):
         """Direct Debit Create API.
 
-        .. code-block::json
+        Direct Debits are payments in M-Pesa that are initiated by the Payee alone without any Payer interaction, but permission must first be granted by the Payer.
+        The granted permission from the Payer to Payee is commonly termed a ‘Mandate’, and M-Pesa must hold details of this Mandate.
+        The Direct Debit API set allows an organisation to get the initial consent of their customers to create the Mandate that allows the organisation to debit customer's account at an agreed frequency and amount for services rendered.
+        After the initial consent, the debit of the account will not involve any customer interaction.
+        The Direct Debit feature makes use of the following API calls:
+        - Create a Direct Debit mandate
+        - Pay a mandate
+        The customer is able to view and cancel the Direct Debit mandate from G2 menu accessible via USSD menu or the Smartphone Application.
+
+        :param AgreedTC: The customer agreed to the terms and conditions.
+            Can only use 1 or 0.
+        :type AgreedTC: str.
+        :param CustomerMSISDN: Customer MSISDN.
+        :type CustomerMSISDN: str.
+        :param ServiceProviderCode: Service Provider Code.
+        :type ServiceProviderCode: str.
+        :param ThirdPartyConversationID: Third Party Conversation ID.
+        :type ThirdPartyConversationID: str.
+        :param ThirdPartyReference: Third Party Reference.
+        :type ThirdPartyReference: str.
+        :param StartRangeOfDays: The start range of days in the month.
+        :type StartRangeOfDays: str, optional.
+        :param EndRangeOfDays: The end range of days in the month.
+        :type EndRangeOfDays: str, optional.
+        :param ExpiryDate: The expiry date of the Mandate.
+        :type ExpiryDate: str, optional.
+        :param FirstPaymentDate: The Start date of the Mandate.
+        :type FirstPaymentDate: str, optional.
+        :param Frequency: The frequency of the payments.
+        :type Frequency: str, optional.
+
+        .. csv-table:: List of Possible Frequency Values.
+            :header: "Frequency", "Description"
+            :widths: 12, 25
+
+                "01", "Once off"
+                "02", "Daily"
+                "03", "Weekly"
+                "04", "Monthly"
+                "05", "Quarterly"
+                "06", "Half Yearly"
+                "07", "Yearly"
+                "08", "On Demand"
+
+        :returns: A dictionary object from the DirectDebitCreation API.
+        :rtype: dict.
+
+        :Example:
+
+        .. code-block:: json
 
             {
               "output_ResponseCode": "INS-0",
@@ -357,7 +534,7 @@ class API:
         method_type = APIMethodType.POST
         params = {
             "input_AgreedTC": AgreedTC,
-            "input_Country": Country,
+            "input_Country": self.Country,
             "input_CustomerMSISDN": CustomerMSISDN,
             "input_EndRangeOfDays": EndRangeOfDays,
             "input_ExpiryDate": ExpiryDate,
@@ -391,10 +568,31 @@ class API:
         ServiceProviderCode: str,
         ThirdPartyConversationID: str,
         ThirdPartyReference: str,
-        Country: str = "GHA",
-        Currency: str = "GHS",
     ):
         """Direct Debit Payment.
+
+        The Direct Debit API set allows an organisation to get the initial consent of their customers to create the Mandate that allows the organisation to debit customer's account at an agreed frequency and amount for services rendered.
+        After the initial consent, the debit of the account will not involve any customer interaction.
+        The Direct Debit feature makes use of the following API calls:
+        - Create a Direct Debit mandate
+        - Pay a mandate
+        The customer is able to view and cancel the Direct Debit mandate from G2 menu accessible via USSD menu or the Smartphone Application.
+
+        :param Amount: Amount.
+        :type Amount: str.
+        :param CustomerMSISDN: Customer MSISDN.
+        :type CustomerMSISDN: str.
+        :param ServiceProviderCode: Service Provider Code.
+        :type ServiceProviderCode: str.
+        :param ThirdPartyConversationID: Third Party Conversation ID.
+        :type ThirdPartyConversationID: str.
+        :param ThirdPartyReference: Third Party Reference.
+        :type ThirdPartyReference: str.
+
+        :returns: A dictionary object from the DirectDebitPayment API.
+        :rtype: dict.
+
+        :Example:
 
         .. code-block:: json
 
@@ -412,8 +610,8 @@ class API:
         method_type = APIMethodType.POST
         params = {
             "input_Amount": Amount,
-            "input_Country": Country,
-            "input_Currency": Currency,
+            "input_Country": self.Country,
+            "input_Currency": self.Currency,
             "input_CustomerMSISDN": CustomerMSISDN,
             "input_ServiceProviderCode": ServiceProviderCode,
             "input_ThirdPartyConversationID": ThirdPartyConversationID,

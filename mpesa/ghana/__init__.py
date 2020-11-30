@@ -14,7 +14,7 @@ class API:
     :type public_key: str.
     :param api_key: API key from developers portal.
     :type api_key: str.
-    :param env: Environment either **sandbox** or **production**, defaults **sandbox**.
+    :param env: Environment either ``"sandbox"`` or ``"production"``, defaults ``"sandbox"``.
     :type env: str, optional.
 
     **Attributes.**

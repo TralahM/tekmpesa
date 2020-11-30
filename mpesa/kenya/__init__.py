@@ -15,9 +15,9 @@ __github__ = "https://github.com/TralahM"
 
 
 class API:
-    """Daraja MPESA API.
+    """Kenya's Daraja MPESA API.
 
-    :param env:  The target environment defaults *sandbox*. *sandbox* or *production*.
+    :param env:  The target environment defaults ``"sandbox"`` ``"sandbox"`` or ``"production"``.
     :type env: str
     :param app_key: The *app_key* from developers portal.
     :type app_key: str
@@ -72,14 +72,12 @@ class API:
         This method is used to fetch the access token required by Mpesa.
         Mpesa supports client_credentials grant type.
 
-        To authorize your API calls to Mpesa, you will need a Basic Auth over
-            HTTPS authorization token.
+        To authorize your API calls to Mpesa, you will need a Basic Auth over HTTPS authorization token.
 
-        The Basic Auth string is a base64 encoded string
-            of your app's client key and client secret.
+        The Basic Auth string is a base64 encoded string of your app's client key and client secret.
 
 
-        :returns: `access_token`  This token is to be used with the Bearer header for further API calls to Mpesa.
+        :return: `access_token`  This token is to be used with the Bearer header for further API calls to Mpesa.
         :rtype: str
 
         """
@@ -128,19 +126,35 @@ class API:
         :type security_credential: str
 
         :param command_id: Options:
-            BusinessPayBill, BusinessBuyGoods, DisburseFundsToBusiness,
-            BusinessToBusinessTransfer ,BusinessTransferFromMMFToUtility,
-            BusinessTransferFromUtilityToMMF, MerchantToMerchantTransfer,
-            MerchantTransferFromMerchantToWorking,
-            MerchantServicesMMFAccountTransfer, AgencyFloatAdvance
+
+            - BusinessPayBill,
+
+            - BusinessBuyGoods,
+
+            - DisburseFundsToBusiness,
+
+            - BusinessToBusinessTransfer,
+
+            - BusinessTransferFromMMFToUtility,
+
+            - BusinessTransferFromUtilityToMMF,
+
+            - MerchantToMerchantTransfer,
+
+            - MerchantTransferFromMerchantToWorking,
+
+            - MerchantServicesMMFAccountTransfer,
+
+            - AgencyFloatAdvance
+
         :type command_id: str
 
-        :param sender_identifier_type: 2 for Till Number,
-            4 for organization shortcode.
+        :param sender_identifier_type: ``2`` for Till Number,
+            ``4`` for organization shortcode.
         :type sender_identifier_type: str
 
-        :param receiver_identifier_type: 2 for Till Number,
-            4 for organization shortcode.
+        :param receiver_identifier_type: ``2`` for Till Number,
+            ``4`` for organization shortcode.
         :type receiver_identifier_type: str
 
         :param amount: Amount.
@@ -226,11 +240,21 @@ class API:
 
         :param initiator_name: Username used to authenticate the transaction.
         :param security_credential: Generate from developer portal
-        :param command_id: Options: SalaryPayment, BusinessPayment,
-            PromotionPayment.
+        :param command_id: Options:
+
+            - SalaryPayment,
+
+            - BusinessPayment,
+
+            - PromotionPayment.
+
         :param amount: Amount.
         :param party_a: Organization/MSISDN making the transaction
-            - Shortcode (6 digits) - MSISDN (12 digits).
+
+            - Shortcode (6 digits)
+
+            - MSISDN (12 digits).
+
         :param party_b: MSISDN receiving the transaction (12 digits).
         :param remarks: Comments that are sent along with the
             transaction(maximum 100 characters).
@@ -321,7 +345,16 @@ class API:
         :param security_credential: Generate from developer portal.
         :param command_id: AccountBalance.
         :param party_a: Till number being queried.
-        :param identifier_type: Type of organization receiving the transaction. Options: 1 - MSISDN 2 - Till Number  4 - Organization short code
+        :param identifier_type: Type of organization receiving the transaction.
+
+            .. csv-table:: Identifier Type sOptions
+                :header: "identifier_type", "description"
+                :widths: 15, 35
+
+                1 , "MSISDN"
+                2 , "Till Number"
+                4 , "Organization short code"
+
         :param remarks: Comments that are sent along with the transaction(maximum 100 characters).
         :param queue_timeout_url: The url that handles information of timed out transactions.
         :param result_url: The url that receives results from M-Pesa api call.
@@ -386,7 +419,8 @@ class API:
 
 
         :param shortcode: The short code of the organization.
-        :param response_type: Default response type for timeout. Incase a tranaction times out, Mpesa will by default Complete or Cancel the transaction.
+        :param response_type: Default response type for timeout.
+            Incase a tranaction times out, Mpesa will by default ``"Complete"`` or ``"Cancel"`` the transaction.
         :param confirmation_url: Confirmation URL for the client.
         :param validation_url: Validation URL for the client.
         :type shortcode: str
@@ -451,15 +485,20 @@ class API:
         """This method uses Mpesa's C2B API to simulate a C2B transaction.
 
         :param shortcode: The short code of the organization.
-        :param command_id: Unique command for each transaction type. - CustomerPayBillOnline - CustomerBuyGoodsOnline.
+        :param command_id: Unique command for each transaction type.
+
+            - CustomerPayBillOnline
+
+            - CustomerBuyGoodsOnline.
+
         :param amount: The amount being transacted
         :param msisdn: Phone number (msisdn) initiating the transaction MSISDN(12 digits)
         :param bill_ref_number: Optional
-        :type shortcode: The short code of the organization.
-        :type command_id: Unique command for each transaction type. - CustomerPayBillOnline - CustomerBuyGoodsOnline.
-        :type amount: The amount being transacted
-        :type msisdn: Phone number (msisdn) initiating the transaction MSISDN(12 digits)
-        :type bill_ref_number: Optional
+        :type shortcode: str
+        :type command_id: str
+        :type amount: str
+        :type msisdn: str
+        :type bill_ref_number: str
 
         :return: Dict object of
 
@@ -685,7 +724,12 @@ class API:
         :param command_id: TransactionReversal
         :param transaction_id: Unique identifier to identify a transaction on M-Pesa.
         :param amount: The amount being transacted
-        :param receiver_party: Organization/MSISDN making the transaction - Shortcode (6 digits) - MSISDN (12 digits).
+        :param receiver_party: Organization/MSISDN making the transaction
+
+            - Shortcode (6 digits)
+
+            - MSISDN (12 digits).
+
         :param receiver_identifier_type: MSISDN receiving the transaction (12 digits).
         :param queue_timeout_url: The url that handles information of timed out transactions.
         :param result_url: The url that receives results from M-Pesa api call.
@@ -783,8 +827,22 @@ class API:
         """This method uses Mpesa's Transaction Status API to check the status of a transaction.
 
 
-        :param party_a: Organization/MSISDN receiving the transaction - MSISDN or shortcode.
-        :param identifier_type: Type of organization receiving the transaction 1-MSISDN. 2-Till Number, 3-Shortcode.
+        :param party_a: Organization/MSISDN receiving the transaction
+
+            - MSISDN or
+
+            - shortcode.
+
+        :param identifier_type: Type of organization receiving the transaction
+
+            .. csv-table:: identifier types
+                :header: "identifier_type","description"
+                :widths: 15,30
+
+                1,"MSISDN"
+                2,"Till Number"
+                3,"Shortcode"
+
         :param remarks: Comments that are sent along with the transaction(maximum 100 characters).
         :param initiator: This is the credential/username used to authenticate the transaction request.
         :param passcode: Get from developer portal

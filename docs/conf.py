@@ -45,6 +45,7 @@ extensions = [
 templates_path = ["_templates"]
 autosummary_generate = True
 viewcode_follow_imported_members = True
+todo_include_todos = True
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.

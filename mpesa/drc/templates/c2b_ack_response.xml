@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<response>
+  <dataItem>
+    <name>ResponseCode</name>
+    <type>String</type>
+    <value>200</value>
+  </dataItem>
+</response>

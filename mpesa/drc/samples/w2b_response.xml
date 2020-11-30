@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<response>
+  <dataItem>
+    <name>BankReceipt</name>
+    <type>String</type>
+    <value>ABCDE12345</value>
+  </dataItem>
+  <dataItem>
+    <name>ResponseCode</name>
+    <type>String</type>
+    <value>0</value>
+  </dataItem>
+  <dataItem>
+    <name>ResponseDescription</name>
+    <type>String</type>
+    <value>Success</value>
+  </dataItem>
+  <dataItem>
+    <name>AccountName</name>
+    <type>String</type>
+    <value>John Doe</value>
+  </dataItem>
+</response>

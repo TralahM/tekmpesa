@@ -92,7 +92,12 @@ class API:
         return api_context
 
     def _execute(self, context: APIContext):
-        """Return result.body after makiing request with `context`."""
+        """Return result.body after makiing request with `context`.
+
+        :raises: ``Exception``.
+        :return: API Response body.
+        :rtype: ``APIResponse``.
+        """
         api_request = APIRequest(context)
         result = None
         try:
@@ -125,7 +130,7 @@ class API:
                 api_key=api_key,
             )
         )
-        return self._pretty(body)["output_SessionID"]
+        return self._pretty(body)["SessionID"]
 
     def c2b(
         self,
@@ -135,6 +140,7 @@ class API:
         ThirdPartyConversationID: str,
         TransactionReference: str,
         PurchasedItemsDesc: str,
+        **kwargs,
     ):
         """C2B Single Stage.
 
@@ -160,11 +166,11 @@ class API:
         .. code-block:: json
 
             {
-              "output_ConversationID": "d3502e5958774f7ba228d83d0d689761",
-              "output_ResponseCode": "INS-0",
-              "output_ResponseDesc": "Request processed successfully",
-              "output_TransactionID": "49XCD123F6",
-              "output_ThirdPartyConversationID": "asv02e5958774f7ba228d83d0d689761"
+              "ConversationID": "d3502e5958774f7ba228d83d0d689761",
+              "ResponseCode": "INS-0",
+              "ResponseDesc": "Request processed successfully",
+              "TransactionID": "49XCD123F6",
+              "ThirdPartyConversationID": "asv02e5958774f7ba228d83d0d689761"
             }
         """
         method_type = APIMethodType.POST
@@ -203,6 +209,7 @@ class API:
         ThirdPartyConversationID: str,
         TransactionReference: str,
         PaymentItemsDesc: str,
+        **kwargs,
     ):
         """B2C Single Stage.
 
@@ -239,11 +246,11 @@ class API:
         .. code-block:: json
 
             {
-              "output_ConversationID": "d3502e5958774f7ba228d83d0d689761",
-              "output_ResponseCode": "INS-0",
-              "output_ResponseDesc": "Request processed successfully",
-              "output_TransactionID": "49XCD123F6",
-              "output_ThirdPartyConversationID": "asv02e5958774f7ba228d83d0d689761"
+              "ConversationID": "d3502e5958774f7ba228d83d0d689761",
+              "ResponseCode": "INS-0",
+              "ResponseDesc": "Request processed successfully",
+              "TransactionID": "49XCD123F6",
+              "ThirdPartyConversationID": "asv02e5958774f7ba228d83d0d689761"
             }
         """
         params = {
@@ -282,6 +289,7 @@ class API:
         ThirdPartyConversationID: str,
         TransactionReference: str,
         PurchasedItemsDesc: str,
+        **kwargs,
     ):
         """B2B Single Stage.
 
@@ -318,11 +326,11 @@ class API:
         .. code-block:: json
 
             {
-              "output_ConversationID": "d3502e5958774f7ba228d83d0d689761",
-              "output_ResponseCode": "INS-0",
-              "output_ResponseDesc": "Request processed successfully",
-              "output_TransactionID": "49XCD123F6",
-              "output_ThirdPartyConversationID": "asv02e5958774f7ba228d83d0d689761"
+              "ConversationID": "d3502e5958774f7ba228d83d0d689761",
+              "ResponseCode": "INS-0",
+              "ResponseDesc": "Request processed successfully",
+              "TransactionID": "49XCD123F6",
+              "ThirdPartyConversationID": "asv02e5958774f7ba228d83d0d689761"
             }
 
         """
@@ -360,6 +368,7 @@ class API:
         ServiceProviderCode: str,
         ThirdPartyConversationID: str,
         TransactionID: str,
+        **kwargs,
     ):
         """Reversal API.
 
@@ -383,11 +392,11 @@ class API:
         .. code-block:: json
 
             {
-              "output_ResponseCode": "INS-0",
-              "output_ResponseDesc": "Request processed successfully",
-              "output_TransactionID": "49XCD123F6",
-              "output_ConversationID": "d3502e5958774f7ba228d83d0d689761",
-              "output_ThirdPartyConversationID": "asv02e5958774f7ba228d83d0d689761"
+              "ResponseCode": "INS-0",
+              "ResponseDesc": "Request processed successfully",
+              "TransactionID": "49XCD123F6",
+              "ConversationID": "d3502e5958774f7ba228d83d0d689761",
+              "ThirdPartyConversationID": "asv02e5958774f7ba228d83d0d689761"
             }
         """
         endpoint = "reversal/"
@@ -420,6 +429,7 @@ class API:
         QueryReference: str,
         ServiceProviderCode: str,
         ThirdPartyConversationID: str,
+        **kwargs,
     ):
         """Query Transaction Status.
 
@@ -440,11 +450,11 @@ class API:
         .. code-block:: json
 
             {
-              "output_ConversationID": "d3502e5958774f7ba228d83d0d689761",
-              "output_ResponseCode": "INS-0",
-              "output_ResponseDesc": "Request processed successfully",
-              "output_ResponseTransactionStatus": "Completed",
-              "output_ThirdPartyConversationID": "asv02e5958774f7ba228d83d0d689761"
+              "ConversationID": "d3502e5958774f7ba228d83d0d689761",
+              "ResponseCode": "INS-0",
+              "ResponseDesc": "Request processed successfully",
+              "ResponseTransactionStatus": "Completed",
+              "ThirdPartyConversationID": "asv02e5958774f7ba228d83d0d689761"
             }
         """
         endpoint = "queryTransactionStatus/"
@@ -483,6 +493,7 @@ class API:
         ExpiryDate: str,
         FirstPaymentDate: str,
         Frequency: str,
+        **kwargs,
     ):
         """Direct Debit Create API.
 
@@ -545,11 +556,11 @@ class API:
         .. code-block:: json
 
             {
-              "output_ResponseCode": "INS-0",
-              "output_ResponseDesc": "Request processed successfully",
-              "output_TransactionReference": "vgisfyn4b22w6tmqjftatq75lyuie6vc",
-              "output_ConversationID": "51a1d9191acc4674ab1dfd321a24ba20",
-              "output_ThirdPartyConversationID": "AAA6d1f9391a0052de0b5334a912jbsj1j2kk"
+              "ResponseCode": "INS-0",
+              "ResponseDesc": "Request processed successfully",
+              "TransactionReference": "vgisfyn4b22w6tmqjftatq75lyuie6vc",
+              "ConversationID": "51a1d9191acc4674ab1dfd321a24ba20",
+              "ThirdPartyConversationID": "AAA6d1f9391a0052de0b5334a912jbsj1j2kk"
             }
         """
         endpoint = "directDebitCreation/"
@@ -590,6 +601,7 @@ class API:
         ServiceProviderCode: str,
         ThirdPartyConversationID: str,
         ThirdPartyReference: str,
+        **kwargs,
     ):
         """Direct Debit Payment.
 
@@ -624,11 +636,11 @@ class API:
         .. code-block:: json
 
             {
-              "output_ResponseCode": "INS-0",
-              "output_ResponseDesc": "Request processed successfully",
-              "output_TransactionReference": "vgisfyn4b22w6tmqjftatq75lyuie6vc",
-              "output_ConversationID": "51a1d9191acc4674ab1dfd321a24ba20",
-              "output_ThirdPartyConversationID": "AAA6d1f9391a0052de0b5334a912jbsj1j2kk"
+              "ResponseCode": "INS-0",
+              "ResponseDesc": "Request processed successfully",
+              "TransactionReference": "vgisfyn4b22w6tmqjftatq75lyuie6vc",
+              "ConversationID": "51a1d9191acc4674ab1dfd321a24ba20",
+              "ThirdPartyConversationID": "AAA6d1f9391a0052de0b5334a912jbsj1j2kk"
 
             }
 

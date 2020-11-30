@@ -22,6 +22,8 @@ class APIRequest:
     def execute(self):
         """Execute API Request using ``self.context``.
 
+        :raises: ``requests.exceptions.ConnectionError``
+        :raises: ``TypeError``
         :return: response object of ``mpesa.portalsdk.APIResponse``.
         :rtype: ``mpesa.portalsdk.APIResponse``.
         """
@@ -34,8 +36,7 @@ class APIRequest:
                     APIMethodType.PUT: self.__put,
                 }.get(self.context.method_type, self.__unknown)()
             except requests.exceptions.ConnectionError as ce:
-                print(ce)
-                return None
+                raise ce
         else:
             raise TypeError("Context cannot be None.")
 

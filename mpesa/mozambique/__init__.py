@@ -26,10 +26,6 @@ class API:
 
         The live/openapi api host ``"api.vm.co.mz"``.
 
-    .. attribute:: Currency
-
-        The Currency used for this API. default ``"GHS"``.
-
 
     **Methods.**
 
@@ -56,9 +52,9 @@ class API:
 
     def _create_context(
         self,
-        path: str,
-        method_type: APIMethodType,
-        port: int,
+        path: str = "",
+        method_type: APIMethodType = APIMethodType.GET,
+        port: int = 80,
         headers: dict = {"Origin": "*"},
         params: dict = {},
     ):
@@ -95,6 +91,12 @@ class API:
             raise Exception("API Call Failed to get Result. Please Check.")
         # print(result.body)  # , type(result.body))-->dict
         return result.body
+
+    @property
+    def bearer_token(self):
+        """Return Bearer Token."""
+        api_request = APIRequest(self._create_context())
+        return api_request.create_bearer_token()
 
     def c2b(
         self,

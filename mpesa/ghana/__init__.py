@@ -362,7 +362,7 @@ class API:
         body = self._execute(context)
         return self._pretty(body)
 
-    def reversal(
+    def reverse(
         self,
         ReversalAmount: str,
         ServiceProviderCode: str,

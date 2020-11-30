@@ -20,6 +20,54 @@ def get_variables(template_name, logger=LOGGER):
     return list(variables)
 
 
+def generate_login(context: dict) -> str:
+    """Return generated template string using context."""
+    template = environment.get_template("login_request.xml")
+    content = template.render(context)
+    print(content)
+    return content
+
+
+def generate_c2b(context: dict) -> str:
+    """Return generated template string using context."""
+    template = environment.get_template("c2b_request.xml")
+    content = template.render(context)
+    print(content)
+    return content
+
+
+def generate_b2c(context: dict) -> str:
+    """Return generated template string using context."""
+    template = environment.get_template("b2c_request.xml")
+    content = template.render(context)
+    print(content)
+    return content
+
+
+def generate_c2b_ack(context: dict) -> str:
+    """Return generated template string using context."""
+    template = environment.get_template("c2b_ack_response.xml")
+    content = template.render(context)
+    print(content)
+    return content
+
+
+def generate_b2c_ack(context: dict) -> str:
+    """Return generated template string using context."""
+    template = environment.get_template("b2c_ack_response.xml")
+    content = template.render(context)
+    print(content)
+    return content
+
+
+def generate_w2b(context: dict) -> str:
+    """Return generated template string using context."""
+    template = environment.get_template("w2b_request.xml")
+    content = template.render(context)
+    print(content)
+    return content
+
+
 if __name__ == "__main__":
     print(environment.list_templates())
     print()

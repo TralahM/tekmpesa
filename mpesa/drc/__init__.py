@@ -1,1 +1,1 @@
-"""MPESA Democratic Republic of Congo SDK Implementation."""
+"""Democratic Republic of Congo MPESA SDK Implementation."""

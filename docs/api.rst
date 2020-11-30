@@ -3,15 +3,6 @@ The MPESA API Reference
 ****************************
 
 
-mpesa.ghana
-############################
-.. automodule:: mpesa.ghana
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
-
-
 mpesa.kenya
 ############################
 .. automodule:: mpesa.kenya
@@ -30,18 +21,9 @@ mpesa.tanzania
    :inherited-members:
 
 
-mpesa.egypt
-################################
-.. automodule:: mpesa.egypt
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
-
-
-mpesa.lesotho
-################################
-.. automodule:: mpesa.lesotho
+mpesa.ghana
+############################
+.. automodule:: mpesa.ghana
    :members:
    :undoc-members:
    :show-inheritance:
@@ -60,6 +42,24 @@ mpesa.mozambique
 mpesa.drc
 ########################################################
 .. automodule:: mpesa.drc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :inherited-members:
+
+
+mpesa.egypt
+################################
+.. automodule:: mpesa.egypt
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :inherited-members:
+
+
+mpesa.lesotho
+################################
+.. automodule:: mpesa.lesotho
    :members:
    :undoc-members:
    :show-inheritance:

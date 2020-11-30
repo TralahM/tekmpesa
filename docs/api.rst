@@ -2,8 +2,8 @@ The mpesa API Reference
 ============================
 
 
-MPESA Ghana
---------------
+mpesa.ghana
+----------------------------
 .. automodule:: mpesa.ghana
    :members:
    :undoc-members:
@@ -11,8 +11,8 @@ MPESA Ghana
    :inherited-members:
 
 
-MPESA Kenya
---------------
+mpesa.kenya
+----------------------------
 .. automodule:: mpesa.kenya
    :members:
    :undoc-members:
@@ -20,8 +20,8 @@ MPESA Kenya
    :inherited-members:
 
 
-MPESA Tanzania
-----------------
+mpesa.tanzania
+--------------------------------
 .. automodule:: mpesa.tanzania
    :members:
    :undoc-members:
@@ -29,8 +29,8 @@ MPESA Tanzania
    :inherited-members:
 
 
-MPESA Egypt
-----------------
+mpesa.egypt
+--------------------------------
 .. automodule:: mpesa.egypt
    :members:
    :undoc-members:
@@ -38,8 +38,8 @@ MPESA Egypt
    :inherited-members:
 
 
-MPESA Lesotho
-----------------
+mpesa.lesotho
+--------------------------------
 .. automodule:: mpesa.lesotho
    :members:
    :undoc-members:
@@ -47,8 +47,8 @@ MPESA Lesotho
    :inherited-members:
 
 
-MPESA Mozambique
-------------------
+mpesa.mozambique
+------------------------------------
 .. automodule:: mpesa.mozambique
    :members:
    :undoc-members:
@@ -56,8 +56,8 @@ MPESA Mozambique
    :inherited-members:
 
 
-MPESA Democratic Republic of Congo
--------------------------------------
+mpesa.drc
+--------------------------------------------------------
 .. automodule:: mpesa.drc
    :members:
    :undoc-members:
@@ -65,8 +65,8 @@ MPESA Democratic Republic of Congo
    :inherited-members:
 
 
-MPESA portalsdk
-------------------
+mpesa.portalsdk
+------------------------------------
 .. automodule:: mpesa.portalsdk
    :members:
    :undoc-members:

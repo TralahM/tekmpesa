@@ -65,6 +65,11 @@ class API:
         self.Country = "GHA"
         self.Currency = "GHS"
 
+    def _pretty(self, body: dict) -> dict:
+        """Return new dict from body with output_ key prefix trimmed."""
+        pretty = {k.replace("output_", ""): v for k, v in body.items()}
+        return pretty
+
     def _create_context(
         self,
         path: str,
@@ -120,7 +125,7 @@ class API:
                 api_key=api_key,
             )
         )
-        return body["output_SessionID"]
+        return self._pretty(body)["output_SessionID"]
 
     def c2b(
         self,
@@ -188,7 +193,7 @@ class API:
         # and will be invalid until it is
         sleep(30)
         body = self._execute(context)
-        return body
+        return self._pretty(body)
 
     def b2c(
         self,
@@ -202,10 +207,15 @@ class API:
         """B2C Single Stage.
 
         The B2C API Call is used as a standard business-to-customer funds disbursement.
+
         Funds from the business account's wallet will be deducted and paid to the mobile money wallet of the customer.
+
         Use cases for the B2C includes:
+
         - Salary payments
+
         - Funds transfers from business
+
         - Charity pay-out
 
         :param Amount: Amount.
@@ -262,7 +272,7 @@ class API:
         # and will be invalid until it is
         sleep(30)
         body = self._execute(context)
-        return body
+        return self._pretty(body)
 
     def b2b(
         self,
@@ -276,10 +286,15 @@ class API:
         """B2B Single Stage.
 
         The B2B API Call is used for business-to-business transactions.
+
         Funds from the business' mobile money wallet will be deducted and transferred to the mobile money wallet of the other business.
+
         Use cases for the B2B includes:
+
         - Stock purchases
+
         - Bill payment
+
         - Adhoc payment
 
         :param Amount: Amount.
@@ -337,7 +352,7 @@ class API:
         # and will be invalid until it is
         sleep(30)
         body = self._execute(context)
-        return body
+        return self._pretty(body)
 
     def reversal(
         self,
@@ -398,7 +413,7 @@ class API:
         # and will be invalid until it is
         sleep(30)
         body = self._execute(context)
-        return body
+        return self._pretty(body)
 
     def transaction_status(
         self,
@@ -454,7 +469,7 @@ class API:
         # and will be invalid until it is
         sleep(30)
         body = self._execute(context)
-        return body
+        return self._pretty(body)
 
     def direct_debit_create(
         self,
@@ -472,12 +487,19 @@ class API:
         """Direct Debit Create API.
 
         Direct Debits are payments in M-Pesa that are initiated by the Payee alone without any Payer interaction, but permission must first be granted by the Payer.
+
         The granted permission from the Payer to Payee is commonly termed a ‘Mandate’, and M-Pesa must hold details of this Mandate.
+
         The Direct Debit API set allows an organisation to get the initial consent of their customers to create the Mandate that allows the organisation to debit customer's account at an agreed frequency and amount for services rendered.
+
         After the initial consent, the debit of the account will not involve any customer interaction.
+
         The Direct Debit feature makes use of the following API calls:
+
         - Create a Direct Debit mandate
+
         - Pay a mandate
+
         The customer is able to view and cancel the Direct Debit mandate from G2 menu accessible via USSD menu or the Smartphone Application.
 
         :param AgreedTC: The customer agreed to the terms and conditions.
@@ -559,7 +581,7 @@ class API:
         # and will be invalid until it is
         sleep(30)
         body = self._execute(context)
-        return body
+        return self._pretty(body)
 
     def direct_debit_payment(
         self,
@@ -572,10 +594,15 @@ class API:
         """Direct Debit Payment.
 
         The Direct Debit API set allows an organisation to get the initial consent of their customers to create the Mandate that allows the organisation to debit customer's account at an agreed frequency and amount for services rendered.
+
         After the initial consent, the debit of the account will not involve any customer interaction.
+
         The Direct Debit feature makes use of the following API calls:
+
         - Create a Direct Debit mandate
+
         - Pay a mandate
+
         The customer is able to view and cancel the Direct Debit mandate from G2 menu accessible via USSD menu or the Smartphone Application.
 
         :param Amount: Amount.
@@ -631,4 +658,4 @@ class API:
         # and will be invalid until it is
         sleep(30)
         body = self._execute(context)
-        return body
+        return self._pretty(body)

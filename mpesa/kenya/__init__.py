@@ -253,6 +253,7 @@ class API:
 
 
         :return: Dict object of
+
             - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.
 
             - `ConversationID` (str): The unique request ID returned by mpesa for each request made
@@ -448,7 +449,6 @@ class API:
         bill_ref_number: str = None,
     ):
         """This method uses Mpesa's C2B API to simulate a C2B transaction.
-
 
         :param shortcode: The short code of the organization.
         :param command_id: Unique command for each transaction type. - CustomerPayBillOnline - CustomerBuyGoodsOnline.

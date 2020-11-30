@@ -12,7 +12,7 @@ class APIRequest:
     """API Request Class.
 
     :param context: context under which to create the API Request.
-    :type context: :class: `mpesa.portalsdk.APIContext`.
+    :type context: ``mpesa.portalsdk.APIContext``.
     """
 
     def __init__(self, context=None):
@@ -22,8 +22,8 @@ class APIRequest:
     def execute(self):
         """Execute API Request using ``self.context``.
 
-        :return: response object of :class: `mpesa.portalsdk.APIResponse`.
-        :rtype: :class: `mpesa.portalsdk.APIResponse`.
+        :return: response object of ``mpesa.portalsdk.APIResponse``.
+        :rtype: ``mpesa.portalsdk.APIResponse``.
         """
         if self.context is not None:
             self.create_default_headers()
@@ -59,13 +59,12 @@ class APIRequest:
         self.context.add_header("Host", self.context.address)
 
     def __get(self):
-        """Return :class: `mpesa.portalsdk.APIResponse` after GET Request."""
+        """Return ``mpesa.portalsdk.APIResponse`` after GET Request."""
         r = requests.get(
             self.context.get_url(),
             params=self.context.get_parameters(),
             headers=self.context.get_headers(),
         )
-        # print(r.__dict__.get("request").__dict__)
         print(r)
         return APIResponse(
             r.status_code,
@@ -74,7 +73,7 @@ class APIRequest:
         )
 
     def __post(self):
-        """Return :class: `mpesa.portalsdk.APIResponse` after POST Request."""
+        """Return ``mpesa.portalsdk.APIResponse`` after POST Request."""
         r = requests.post(
             self.context.get_url(),
             headers=self.context.get_headers(),
@@ -88,7 +87,7 @@ class APIRequest:
         )
 
     def __put(self):
-        """Return :class: `mpesa.portalsdk.APIResponse` after PUT Request."""
+        """Return ``mpesa.portalsdk.APIResponse`` after PUT Request."""
         print("PUT")
         r = requests.put(
             self.context.get_url(),
@@ -103,7 +102,10 @@ class APIRequest:
         )
 
     def __unknown(self):
-        """Raise Unknown Method Exception."""
+        """Raise Unknown Method Exception.
+
+        :raises: Exception("Unknown Method").
+        """
         raise Exception("Unknown Method")
 
 
@@ -119,7 +121,7 @@ class APIResponse(dict):
     """
 
     def __init__(self, status_code, headers, body):
-        """Constructor."""
+        """Construct."""
         super(APIResponse, self).__init__()
         self["status_code"]: str = status_code
         self["headers"]: dict = headers

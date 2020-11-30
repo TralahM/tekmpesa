@@ -5,7 +5,7 @@
         <soap:EventID
             xmlns:soap="http://www.4cgroup.co.za/soapauth">12001</soap:EventID>
         <soap:Token
-            xmlns:soap="http://www.4cgroup.co.za/soapauth">{{ token }}</soap:Token>
+            xmlns:soap="http://www.4cgroup.co.za/soapauth">{{ Token }}</soap:Token>
     </soapenv:Header>
     <soapenv:Body>
         <gen:getGenericResult
@@ -14,7 +14,7 @@
                 <dataItem>
                     <name>ServiceProviderName</name>
                     <type>String</type>
-                    <value>{{ serviceprovidername|default("ONE4ALL") }}</value>
+                    <value>{{ ServiceProviderName|default("ONE4ALL") }}</value>
                 </dataItem>
                 <dataItem>
                     <name>CustomerMSISDN</name>
@@ -24,7 +24,7 @@
                 <dataItem>
                     <name>Currency</name>
                     <type>String</type>
-                    <value>{{ currency|default("CDF") }}</value>
+                    <value>{{ Currency|default("CDF") }}</value>
                 </dataItem>
                 <dataItem>
                     <name>Amount</name>
@@ -34,37 +34,37 @@
                 <dataItem>
                     <name>TransactionDateTime</name>
                     <type>Date</type>
-                    <value>{{ Date }}</value>
+                    <value>{{ TransactionDateTime }}</value>
                 </dataItem>
                 <dataItem>
                     <name>Shortcode</name>
                     <type>String</type>
-                    <value>{{ shortcode|default("15058") }}</value>
+                    <value>{{ Shortcode|default("15058") }}</value>
                 </dataItem>
                 <dataItem>
                     <name>Language</name>
                     <type>String</type>
-                    <value>{{ language|default("EN") }}</value>
+                    <value>{{ Language|default("EN") }}</value>
                 </dataItem>
                 <dataItem>
                     <name>ThirdPartyReference</name>
                     <type>String</type>
-                    <value>{{ thirdpartyref }}</value>
+                    <value>{{ ThirdPartyReference }}</value>
                 </dataItem>
                 <dataItem>
                     <name>CallBackChannel</name>
                     <type>String</type>
-                    <value>{{ callback_channel|default("2") }}</value>
+                    <value>{{ CallBackChannel|default("2") }}</value>
                 </dataItem>
                 <dataItem>
                     <name>CallBackDestination</name>
                     <type>String</type>
-                    <value>{{ callback_url }}</value>
+                    <value>{{ CallBackDestination }}</value>
                 </dataItem>
                 <dataItem>
                     <name>CommandID</name>
                     <type>String</type>
-                    <value>{{ command_id|default("InitTrans_one4allb2c") }}</value>
+                    <value>{{ CommandID|default("InitTrans_one4allb2c") }}</value>
                 </dataItem>
             </Request>
         </gen:getGenericResult>

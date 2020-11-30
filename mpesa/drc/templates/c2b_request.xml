@@ -5,7 +5,7 @@
     xmlns:gen="http://www.4cgroup.co.za/genericsoap">
     <soapenv:Header>
         <soap:Token
-            xmlns:soap="http://www.4cgroup.co.za/soapauth">{{ token }}</soap:Token>
+            xmlns:soap="http://www.4cgroup.co.za/soapauth">{{ Token }}</soap:Token>
         <soap:EventID>80049</soap:EventID>
     </soapenv:Header>
     <soapenv:Body>
@@ -19,12 +19,12 @@
                 <dataItem>
                     <name>ServiceProviderCode</name>
                     <type>String</type>
-                    <value>{{ serviceprovidercode|default("8337") }}</value>
+                    <value>{{ ServiceProviderCode|default("8337") }}</value>
                 </dataItem>
                 <dataItem>
                     <name>Currency</name>
                     <type>String</type>
-                    <value>{{ currency|default("CDF") }}</value>
+                    <value>{{ Currency|default("CDF") }}</value>
                 </dataItem>
                 <dataItem>
                     <name>Amount</name>
@@ -39,37 +39,37 @@
                 <dataItem>
                     <name>ThirdPartyReference</name>
                     <type>String</type>
-                    <value>{{ thirdpartyref }}</value>
+                    <value>{{ ThirdPartyReference }}</value>
                 </dataItem>
                 <dataItem>
                     <name>CommandId</name>
                     <type>String</type>
-                    <value>{{ command_id|default("InitTrans_oneForallC2B") }}</value>
+                    <value>{{ CommandId|default("InitTrans_oneForallC2B") }}</value>
                 </dataItem>
                 <dataItem>
                     <name>Language</name>
                     <type>String</type>
-                    <value>{{ language|default("EN") }}</value>
+                    <value>{{ Language|default("EN") }}</value>
                 </dataItem>
                 <dataItem>
                     <name>CallBackChannel</name>
                     <type>String</type>
-                    <value>{{ callback_channel|default("2") }}</value>
+                    <value>{{ CallBackChannel|default("2") }}</value>
                 </dataItem>
                 <dataItem>
                     <name>CallBackDestination</name>
                     <type>String</type>
-                    <value>{{ callback_url }}</value>
+                    <value>{{ CallBackDestination }}</value>
                 </dataItem>
                 <dataItem>
                     <name>Surname</name>
                     <type>String</type>
-                    <value>{{ surname|default("Surname") }}</value>
+                    <value>{{ Surname|default("Surname") }}</value>
                 </dataItem>
                 <dataItem>
                     <name>Initials</name>
                     <type>String</type>
-                    <value>{{ initials|default("Initials") }}</value>
+                    <value>{{ Initials|default("Initials") }}</value>
                 </dataItem>
             </Request>
         </gen:getGenericResult>

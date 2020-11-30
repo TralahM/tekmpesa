@@ -8,47 +8,47 @@
       <Request>
         <dataItem>
           <name>CustomerMSISDN</name>
-          <value>243811231231</value>
+          <value>{{ CustomerMSISDN }}</value>
           <type>String</type>
         </dataItem>
         <dataItem>
           <name>Currency</name>
-          <value>USD</value>
+          <value>{{ Currency|default("USD") }}</value>
           <type>String</type>
         </dataItem>
         <dataItem>
           <name>Amount</name>
-          <value>200</value>
+          <value>{{ Amount }}</value>
           <type>String</type>
         </dataItem>
         <dataItem>
           <name>TransactionDateTime</name>
-          <value>20150716150000</value>
+          <value>{{ TransactionDateTime }}</value>
           <type>Date</type>
         </dataItem>
         <dataItem>
           <name>TransactionID</name>
-          <value>BVA12369A</value>
+          <value>{{ TransactionID }}</value>
           <type>String</type>
         </dataItem>
         <dataItem>
           <name>BankShortCode</name>
-          <value>123456</value>
+          <value>{{ BankShortCode }}</value>
           <type>String</type>
         </dataItem>
         <dataItem>
           <name>CustomerAccountNumber</name>
-          <value>1234567890</value>
+          <value>{{ CustomerAccountNumber }}</value>
           <type>String</type>
         </dataItem>
         <dataItem>
           <name>TransactionType</name>
-          <value>BankC2B</value>
+          <value>{{ TransactionType|default("BankC2B") }}</value>
           <type>String</type>
         </dataItem>
         <dataItem>
           <name>ThirdPartyID</name>
-          <value>lgskbtwhrr1pf4hnl62ng63k5u0dcjqe</value>
+          <value>{{ ThirdPartyID }}</value>
           <type>String</type>
         </dataItem>
       </Request>

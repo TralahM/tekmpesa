@@ -12,7 +12,7 @@ class APIRequest:
     """API Request Class.
 
     :param context: context under which to create the API Request.
-    :type context: ``mpesa.portalsdk.APIContext``.
+    :type context: :class:`mpesa.portalsdk.APIContext`.
     """
 
     def __init__(self, context=None):
@@ -25,7 +25,7 @@ class APIRequest:
         :raises: ``requests.exceptions.ConnectionError``
         :raises: ``TypeError``
         :return: response object of ``mpesa.portalsdk.APIResponse``.
-        :rtype: ``mpesa.portalsdk.APIResponse``.
+        :rtype: :class:`mpesa.portalsdk.APIResponse`.
         """
         if self.context is not None:
             self.create_default_headers()

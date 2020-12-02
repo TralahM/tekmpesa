@@ -1,24 +1,25 @@
-"""
+"""Portalsdk subpackage.
+
 .. note::
     This module provides an abstraction over the API mechanisms of three submodules.
     Namely:
 
-    - ``mpesa.tanzania``
+    - :mod:`mpesa.tanzania`
 
-    - ``mpesa.ghana``
+    - :mod:`mpesa.ghana`
 
-    - ``mpesa.mozambique``
+    - :mod:`mpesa.mozambique`
 
     It Provides the following classes which are used internally in the
     implementation of the respective API classes.
 
-    - ``mpesa.portalsdk.APIContext``
+    - :class:`mpesa.portalsdk.APIContext`
 
-    - ``mpesa.portalsdk.APIMethodType``
+    - :class:`mpesa.portalsdk.APIMethodType`
 
-    - ``mpesa.portalsdk.APIRequest``
+    - :class:`mpesa.portalsdk.APIRequest`
 
-    - ``mpesa.portalsdk.APIResponse``
+    - :class:`mpesa.portalsdk.APIResponse`
 
 """
 from mpesa.portalsdk.api import APIContext

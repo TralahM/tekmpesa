@@ -1,5 +1,8 @@
-mpesa.kenya
+MPESA API Reference
 ============================
+
+mpesa.kenya
+############################
 .. automodule:: mpesa.kenya
    :members:
    :undoc-members:
@@ -8,7 +11,7 @@ mpesa.kenya
 
 
 mpesa.tanzania
-================================
+################################
 .. automodule:: mpesa.tanzania
    :members:
    :undoc-members:
@@ -17,7 +20,7 @@ mpesa.tanzania
 
 
 mpesa.ghana
-============================
+############################
 .. automodule:: mpesa.ghana
    :members:
    :undoc-members:
@@ -26,7 +29,7 @@ mpesa.ghana
 
 
 mpesa.mozambique
-====================================
+####################################
 .. automodule:: mpesa.mozambique
    :members:
    :undoc-members:
@@ -35,7 +38,7 @@ mpesa.mozambique
 
 
 mpesa.drc
-========================================================
+########################################################
 .. automodule:: mpesa.drc
    :members:
    :undoc-members:
@@ -44,7 +47,7 @@ mpesa.drc
 
 
 mpesa.egypt
-================================
+################################
 .. automodule:: mpesa.egypt
    :members:
    :undoc-members:
@@ -53,7 +56,7 @@ mpesa.egypt
 
 
 mpesa.lesotho
-================================
+################################
 .. automodule:: mpesa.lesotho
    :members:
    :undoc-members:
@@ -62,7 +65,7 @@ mpesa.lesotho
 
 
 mpesa.portalsdk
-====================================
+####################################
 .. automodule:: mpesa.portalsdk
    :members:
    :undoc-members:

@@ -3,14 +3,36 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to docrepo's documentation!
-===================================
+Tekmpesa - tekmpesa's documentation!
+========================================
+Tekmpesa is an open-source Python SDK for the MPESA mobile money platform.
+It was designed to provide a simple, clear, and concise interface to quickly
+integrate MPESA payments into python applications.
+
+
+Features
+----------
+- Simple, Clean, and Consistent API
+- Supports MPESA Across 5 Countries in Africa.
+
+
+.. csv-table:: Supported Countries.
+   :header: "Country","Supported"
+   :widths: 30,10
+
+    "Kenya","YES"
+    "Tanzania","YES"
+    "Ghana","YES"
+    "Democratic Republic of Congo (DRC)","YES"
+    "Mozambique","YES"
+    "Egypt","NO"
+    "Lesotho","NO"
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 3
+   :caption: Table Of Contents:
 
-   QuickStart <contents.rst>
+   Overview <contents.rst>
    API Reference <api.rst>
 
 

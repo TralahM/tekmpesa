@@ -5,7 +5,7 @@
 
 Tekmpesa - tekmpesa's documentation!
 ========================================
-Tekmpesa is an open-source Python SDK for the MPESA mobile money platform.
+Tekmpesa is an open-source Python SDK supporting 5 Countries for the MPESA mobile money platform.
 It was designed to provide a simple, clear, and concise interface to quickly
 integrate MPESA payments into python applications.
 

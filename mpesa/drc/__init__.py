@@ -243,32 +243,34 @@ class API:
         handler = parse_c2b_response
         return self._post_request(url, content, handler)
 
-    # def w2b(
-    #     self,
-    #     Amount: str,
-    #     BankShortCode: str,
-    #     Currency: str,
-    #     CustomerAccountNumber: str,
-    #     CustomerMSISDN: str,
-    #     ThirdPartyID: str,
-    #     TransactionDateTime: str,
-    #     TransactionID: str,
-    #     TransactionType: str,
-    # ):
-    #     """Wallet To Bank.
+    def w2b(
+        self,
+        Amount: str,
+        BankShortCode: str,
+        Currency: str,
+        CustomerAccountNumber: str,
+        CustomerMSISDN: str,
+        ThirdPartyID: str,
+        TransactionDateTime: str,
+        TransactionID: str,
+        TransactionType: str,
+    ):
+        """Wallet To Bank.
 
-    #     .. todo::
-    #         To be Implemented In the Future once the API is documented.
-    #     """
-    #     params={
-    #         "TransactionDateTime": TransactionDateTime,
-    #         "CustomerAccountNumber": CustomerAccountNumber,
-    #         "ThirdPartyID": ThirdPartyID,
-    #         "TransactionType": TransactionType,
-    #         "CustomerMSISDN": CustomerMSISDN,
-    #         "BankShortCode": BankShortCode,
-    #         "Currency": Currency,
-    #         "TransactionID": TransactionID,
-    #         "Amount": Amount,
-    #     }
-    #     ...
+        .. todo::
+            To be Implemented In the Future once the API is documented.
+        """
+        params = {
+            "TransactionDateTime": TransactionDateTime,
+            "CustomerAccountNumber": CustomerAccountNumber,
+            "ThirdPartyID": ThirdPartyID,
+            "TransactionType": TransactionType,
+            "CustomerMSISDN": CustomerMSISDN,
+            "BankShortCode": BankShortCode,
+            "Currency": Currency,
+            "TransactionID": TransactionID,
+            "Amount": Amount,
+        }
+        print(params)
+        pass
+        ...

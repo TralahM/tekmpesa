@@ -1,24 +1,37 @@
 Getting Started.
 =================
+The package provides a simple,clean and intuitive interface to enable you to
+quickly and consistently use this library in your python application.
 
 Installation
 ``````````````````
 The preferred installation method is directly from pypi:
 
-.. code-block:: console
+.. code-block:: shell
 
    pip install -U tekmpesa
 
 Additionally, if you want to use the built-in test mechanisms, you need to
 install some extra requirements:
 
-.. code-block:: console
+.. code-block:: shell
 
    pip install -U tekmpesa[tests]
 
 
 Usage
 ``````````````````
+The main class you will be working with is the ``API`` class of the respective
+submodules.
+
+For example for Mpesa Kenya the class is :class:`mpesa.kenya.API`, and similarly:
+:class:`mpesa.ghana.API` for Ghana,
+:class:`mpesa.tanzania.API` for Tanzania,
+:class:`mpesa.mozambique.API` for Mozambique,
+:class:`mpesa.drc.API` for the Democratic Republic of Congo.
+
+
+
 .. code-block:: python
 
     import mpesa

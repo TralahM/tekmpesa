@@ -15,6 +15,16 @@ Features
 - Simple, Clean, and Consistent API
 - Supports MPESA Across 5 Countries in Africa.
 
+* :mod:`mpesa.kenya`
+
+* :mod:`mpesa.ghana`
+
+* :mod:`mpesa.tanzania`
+
+* :mod:`mpesa.mozambique`
+
+* :mod:`mpesa.drc`
+
 
 .. csv-table:: Supported Countries.
    :header: "Country","Supported"

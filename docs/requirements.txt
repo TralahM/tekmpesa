@@ -1,3 +1,5 @@
 sphinx_rtd_theme
 lxml
 pycryptodome
+PyYaml
+jinja2

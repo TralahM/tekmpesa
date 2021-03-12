@@ -17,11 +17,24 @@ from mpesa.drc.generators import (
     generate_c2b,
     generate_b2c,
 )
-from mpesa.drc.parsers import (
-    parse_c2b_response,
-    parse_login_response,
-    parse_b2c_response,
-)
+
+# from mpesa.drc.parsers import (
+#     # parse_c2b_response,
+#     # parse_login_response,
+#     # parse_b2c_response,
+# )
+from mpesa.drc.request_parsers import prepare_content, data_items_to_map
+from mpesa.drc.callback_parsers import prepare_callback
+
+__all__ = [
+    "data_items_to_map",
+    "prepare_content",
+    "prepare_callback",
+    "generate_login",
+    "generate_c2b",
+    "generate_b2c",
+    "API",
+]
 
 
 class API:
@@ -102,7 +115,7 @@ class API:
         result_content = response.content
         return content_handler(result_content)
 
-    def authentication_token(self):
+    def authenticate(self):
         """Return Authentication Token."""
         content = generate_login(
             {
@@ -113,9 +126,16 @@ class API:
         result = self._post_request(
             self._login_url,
             content,
-            parse_login_response,
+            prepare_content,
         )
-        return result["token"]
+        return result
+        ...
+
+    def authentication_token(self):
+        """Return Authentication Token."""
+        result = self.authenticate()
+        print(result)
+        return result["SessionID"]
         ...
 
     def b2c(
@@ -175,7 +195,7 @@ class API:
             "Amount": Amount,
         }
         content = generate_b2c(params)
-        handler = parse_b2c_response
+        handler = prepare_content
         return self._post_request(url, content, handler)
         ...
 
@@ -240,7 +260,7 @@ class API:
             "ServiceProviderCode": ServiceProviderCode,
         }
         content = generate_c2b(params)
-        handler = parse_c2b_response
+        handler = prepare_content
         return self._post_request(url, content, handler)
 
     def w2b(
@@ -274,3 +294,13 @@ class API:
         print(params)
         pass
         ...
+
+    @classmethod
+    def parseB2C(cls, xml_response: bytes):
+        """Parse B2C Callback XML Payload and return json."""
+        return prepare_callback(xml_response)
+
+    @classmethod
+    def parseC2B(cls, xml_response: bytes):
+        """Parse C2B Callback XML Payload and return json."""
+        return prepare_callback(xml_response)

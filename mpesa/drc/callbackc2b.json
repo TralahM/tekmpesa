@@ -1,0 +1,65 @@
+{
+    "soapenv:Envelope": {
+        "@xmlns:soapenv": "http://schemas.xmlsoap.org/soap/envelope/",
+        "@xmlns:soap": "http://www.4cgroup.co.za/soapauth",
+        "@xmlns:gen": "http://www.4cgroup.co.za/genericsoap",
+        "soapenv:Body": {
+            "gen:getGenericResult": {
+                "Request": {
+                    "dataItem": [
+                        {
+                            "name": "ResultType",
+                            "value": "-1",
+                            "type": "String"
+                        },
+                        {
+                            "name": "ResultCode",
+                            "value": "-3",
+                            "type": "String"
+                        },
+                        {
+                            "name": "ResultDesc",
+                            "value": "Failed response initiating payment .",
+                            "type": "String"
+                        },
+                        {
+                            "name": "OriginatorConversationID",
+                            "value": "-1",
+                            "type": "String"
+                        },
+                        {
+                            "name": "Conver sationID",
+                            "value": "-1",
+                            "type": "String"
+                        },
+                        {
+                            "name": "ThirdPartyReference",
+                            "value": "R20201127204705",
+                            "type": "String"
+                        },
+                        {
+                            "name": "Amount",
+                            "value": "1000",
+                            "type": "String"
+                        },
+                        {
+                            "name": "TransactionTime",
+                            "value": "-1",
+                            "type": "String"
+                        },
+                        {
+                            "name": "InsightReference",
+                            "value": "B51D9D0A488C5882E0536C045A0AFD1D",
+                            "type": "String"
+                        },
+                        {
+                            "name": "TransactionID",
+                            "value": "-1",
+                            "type": "String"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

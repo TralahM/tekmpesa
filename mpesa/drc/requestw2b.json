@@ -1,0 +1,26 @@
+{
+    "response": {
+        "dataItem": [
+            {
+                "name": "BankReceipt",
+                "type": "String",
+                "value": "ABCDE12345"
+            },
+            {
+                "name": "ResponseCode",
+                "type": "String",
+                "value": "0"
+            },
+            {
+                "name": "ResponseDescription",
+                "type": "String",
+                "value": "Success"
+            },
+            {
+                "name": "AccountName",
+                "type": "String",
+                "value": "John Doe"
+            }
+        ]
+    }
+}

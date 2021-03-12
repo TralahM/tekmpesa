@@ -1,0 +1,48 @@
+{
+    "S:Envelope": {
+        "@xmlns:S": "http://schemas.xmlsoap.org/soap/envelope/",
+        "@xmlns:SOAP-ENV": "http://schemas.xmlsoap.org/soap/envelope/",
+        "S:Header": {
+            "ns3:eventid": {
+                "@xmlns:ns2": "http://www.4cgroup.co.za/genericsoap",
+                "@xmlns:ns3": "http://www.4cgroup.co.za/soapauth",
+                "#text": "2500"
+            }
+        },
+        "S:Body": {
+            "ns2:getGenericResultResponse": {
+                "@xmlns:ns2": "http://www.4cgroup.co.za/genericsoap",
+                "@xmlns:ns3": "http://www.4cgroup.co.za/soapauth",
+                "SOAPAPIResult": {
+                    "eventInfo": {
+                        "code": "3",
+                        "description": "Processed",
+                        "detail": "Processed",
+                        "transactionID": "0c49ec4bbebe44b082aa24e5f548b514"
+                    },
+                    "request": {
+                        "dataItem": [
+                            {
+                                "name": "Username",
+                                "type": "String",
+                                "value": "thirdpartyc2bw"
+                            },
+                            {
+                                "name": "Password",
+                                "type": "String",
+                                "value": "thirdpartyc2bw"
+                            }
+                        ]
+                    },
+                    "response": {
+                        "dataItem": {
+                            "name": "SessionID",
+                            "type": "String",
+                            "value": "dbcb63a40afd4191a990d66ed9cb62f7"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

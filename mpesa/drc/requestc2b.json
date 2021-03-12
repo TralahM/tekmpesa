@@ -1,0 +1,110 @@
+{
+    "S:Envelope": {
+        "@xmlns:S": "http://schemas.xmlsoap.org/soap/envelope/",
+        "@xmlns:SOAP-ENV": "http://schemas.xmlsoap.org/soap/envelope/",
+        "S:Header": {
+            "ns3:eventid": {
+                "@xmlns:ns2": "http://www.4cgroup.co.za/genericsoap",
+                "@xmlns:ns3": "http://www.4cgroup.co.za/soapauth",
+                "#text": "80049"
+            }
+        },
+        "S:Body": {
+            "ns2:getGenericResultResponse": {
+                "@xmlns:ns2": "http://www.4cgroup.co.za/genericsoap",
+                "@xmlns:ns3": "http://www.4cgroup.co.za/soapauth",
+                "SOAPAPIResult": {
+                    "eventInfo": {
+                        "code": "3",
+                        "description": "Processed",
+                        "detail": "Processed",
+                        "transactionID": "80db41ffab3c4b88ab7f937f9fd7ccc9"
+                    },
+                    "request": {
+                        "dataItem": [
+                            {
+                                "name": "CustomerMSISDN",
+                                "type": "String",
+                                "value": "243811835361"
+                            },
+                            {
+                                "name": "ServiceProviderCode",
+                                "type": "String",
+                                "value": "8337"
+                            },
+                            {
+                                "name": "Currency",
+                                "type": "String",
+                                "value": "CDF"
+                            },
+                            {
+                                "name": "Amount",
+                                "type": "String",
+                                "value": "10"
+                            },
+                            {
+                                "name": "Date",
+                                "type": "String",
+                                "value": "20170901155250"
+                            },
+                            {
+                                "name": "ThirdPartyReference",
+                                "type": "String",
+                                "value": "Test100"
+                            },
+                            {
+                                "name": "CommandId",
+                                "type": "String",
+                                "value": "InitTrans_oneForallC2B"
+                            },
+                            {
+                                "name": "Language",
+                                "type": "String",
+                                "value": "EN"
+                            },
+                            {
+                                "name": "CallBackChannel",
+                                "type": "String",
+                                "value": "4"
+                            },
+                            {
+                                "name": "CallBackDestination",
+                                "type": "String",
+                                "value": "Christian.Belewete@vodacom.cd"
+                            },
+                            {
+                                "name": "Surname",
+                                "type": "String",
+                                "value": "Surname"
+                            },
+                            {
+                                "name": "Initials",
+                                "type": "String",
+                                "value": "Initials"
+                            }
+                        ]
+                    },
+                    "response": {
+                        "dataItem": [
+                            {
+                                "name": "InsightReference",
+                                "type": "String",
+                                "value": "7272C194D0B50616E054002128FBA42E"
+                            },
+                            {
+                                "name": "ResponseCode",
+                                "type": "String",
+                                "value": "0"
+                            },
+                            {
+                                "name": "CustomerMSISDN",
+                                "type": "String",
+                                "value": "243811835361"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

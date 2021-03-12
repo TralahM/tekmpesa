@@ -1,0 +1,12 @@
+{
+    "ResultType": "-1",
+    "ResultCode": "-3",
+    "ResultDesc": "Failed response initiating payment .",
+    "OriginatorConversationID": "-1",
+    "ConversationID": "-1",
+    "ThirdPartyReference": "R20201127204705",
+    "Amount": "1000",
+    "TransactionTime": "-1",
+    "InsightReference": "B51D9D0A488C5882E0536C045A0AFD1D",
+    "TransactionID": "-1"
+}

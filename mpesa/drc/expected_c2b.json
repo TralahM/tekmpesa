@@ -1,0 +1,21 @@
+{
+    "code": "3",
+    "description": "Processed",
+    "detail": "Processed",
+    "transactionID": "80db41ffab3c4b88ab7f937f9fd7ccc9",
+    "event_id": "80049",
+    "CustomerMSISDN": "243811835361",
+    "ServiceProviderCode": "8337",
+    "Currency": "CDF",
+    "Amount": "10",
+    "Date": "20170901155250",
+    "ThirdPartyReference": "Test100",
+    "CommandId": "InitTrans_oneForallC2B",
+    "Language": "EN",
+    "CallBackChannel": "4",
+    "CallBackDestination": "Christian.Belewete@vodacom.cd",
+    "Surname": "Surname",
+    "Initials": "Initials",
+    "InsightReference": "7272C194D0B50616E054002128FBA42E",
+    "ResponseCode": "0"
+}

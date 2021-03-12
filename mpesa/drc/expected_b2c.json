@@ -1,0 +1,20 @@
+{
+    "code": "3",
+    "description": "Processed",
+    "detail": "Processed",
+    "transactionID": "80db41ffab3c4b88ab7f937f9fd7ccc9",
+    "event_id": "80049",
+    "ServiceProviderName": "ONE4ALL",
+    "CustomerMSISDN": "243811835361",
+    "Currency": "CDF",
+    "Amount": "5000",
+    "TransactionDateTime": "20190901155250",
+    "Shortcode": "15058",
+    "Language": "EN",
+    "ThirdPartyReference": "Test100",
+    "CallBackChannel": "4",
+    "CallBackDestination": "Christian.Belewete@vodacom.cd",
+    "CommandID": "InitTrans_one4allb2c",
+    "InsightReference": "7272C194D0B50616E054002128FBA42E",
+    "ResponseCode": "0"
+}

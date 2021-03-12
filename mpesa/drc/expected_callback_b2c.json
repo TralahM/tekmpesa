@@ -1,0 +1,12 @@
+{
+    "ResultType": "0",
+    "ResultCode": "0",
+    "ResultDesc": "Process service request successfully.",
+    "OriginatorConversationId": "fbb550d9eb924e8e99ac1aa7ff8c05d0",
+    "ConversationId": "0c9766a5-1c9e-4ffa-b815-3b447dde5cb1",
+    "TransactionID": "X-BS281",
+    "Amount": "200",
+    "TransactionTime": "20170301T22:59:01",
+    "ThirdPartyReference": "123456-Test",
+    "InsightReference": "12sdxq3634dadsas242"
+}

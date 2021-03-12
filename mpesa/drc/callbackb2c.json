@@ -1,0 +1,68 @@
+{
+    "soapenv:Envelope": {
+        "@xmlns:soapenv": "http://schemas.xmlsoap.org/soap/envelope/",
+        "@xmlns:soap": "http://www.4cgroup.co.za/soapauth",
+        "@xmlns:gen": "http://www.4cgroup.co.za/genericsoap",
+        "soapenv:Header": {
+            "soap:EventID": "1"
+        },
+        "soapenv:Body": {
+            "gen:getGenericResult": {
+                "Request": {
+                    "dataItem": [
+                        {
+                            "name": "ResultType",
+                            "value": "0",
+                            "type": "String"
+                        },
+                        {
+                            "name": "ResultCode",
+                            "value": "0",
+                            "type": "String"
+                        },
+                        {
+                            "name": "ResultDesc",
+                            "value": "Process service request successfully.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "OriginatorConversationId",
+                            "value": "fbb550d9eb924e8e99ac1aa7ff8c05d0",
+                            "type": "String"
+                        },
+                        {
+                            "name": "ConversationId",
+                            "value": "0c9766a5-1c9e-4ffa-b815-3b447dde5cb1",
+                            "type": "String"
+                        },
+                        {
+                            "name": "TransactionID",
+                            "value": "X-BS281",
+                            "type": "String"
+                        },
+                        {
+                            "name": "Amount",
+                            "value": "200",
+                            "type": "String"
+                        },
+                        {
+                            "name": "TransactionTime",
+                            "value": "20170301T22:59:01",
+                            "type": "String"
+                        },
+                        {
+                            "name": "ThirdPartyReference",
+                            "value": "123456-Test",
+                            "type": "String"
+                        },
+                        {
+                            "name": "InsightReference",
+                            "value": "12sdxq3634dadsas242",
+                            "type": "String"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

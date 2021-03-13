@@ -23,10 +23,12 @@ from mpesa.drc.generators import (
 #     # parse_login_response,
 #     # parse_b2c_response,
 # )
-from mpesa.drc.request_parsers import prepare_content, data_items_to_map
-from mpesa.drc.callback_parsers import prepare_callback
+from mpesa.drc.request_parser import prepare_content, data_items_to_map
+from mpesa.drc.callback_parser import prepare_callback
 
 __all__ = [
+    # "request_parser",
+    # "callback_parser",
     "data_items_to_map",
     "prepare_content",
     "prepare_callback",
